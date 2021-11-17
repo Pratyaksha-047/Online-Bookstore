@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family:'Ubuntu';
+}
+
+.hamburger-menu {
+    width: 35px;
+    height: 30px;
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #0a0a0ad7;
+    padding: 3px;
+}
+
+.line{
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transition: all 0.8s;
+}
+
+.change .line-1 {
+    transform: rotateZ(-405deg) translate(-7px, 5px);
+    background-color: white;
+}
+
+.change .line-2 {
+    opacity: 0;
+    background-color: white;
+}
+
+.change .line-3 {
+    transform: rotateZ(405deg) translate(-7px, -5px);
+    background-color: white;
+}
+
+.navbar{
+    height: 100%;
+    width: 100%;
+    background-color: #0a0a0ad7;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: right .8s cubic-bezier(1, 0, 0, 1);
+    z-index: 999;
+}
+
+.change {
+    right: 0;
+}
+
+.nav-list {
+    text-align: right;
+}
+
+.nav-item {
+    list-style: none;
+    margin: 25px;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 22px;
+    color:#fff;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 3px 0;
+    text-align: center;
+}
+
+.nav-link::before, .nav-link::after {
+    content: "";
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.5s;
+}
+
+.nav-link::after{
+    bottom: 0;
+    transform-origin: right;
+}
+
+.nav-link::before{
+    top: 0;
+    transform-origin: left;
+}
+
+.nav-link:hover::before, .nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+.home-con {
+    position: absolute;
+    z-index: 900;
+    color: rgb(27, 26, 26);
+    margin-top: 200px;
+    font-family: serif;
+    width: 50%;
+    margin-left: 5%;
+}
+
+.footer-nav{
+    list-style-type: none;
+}
+
+li{
+    text-decoration: none;
+}
+
+.site-footer{
+    padding: 0;
+}
+
+.grid-spacing-sm{
+    /* display: inline-flex; */
+    width: 100%;
+}
+
+.footer-div{
+    margin: 0 40px;
+}
+
+.wrap-size-lg{
+    margin: 0;
+    width: 100%;
+    padding: 0;
+}
