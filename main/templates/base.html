@@ -1,59 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-    {% block head %}
-    {% block title %}{% endblock %} 
-    {% endblock %}
-</head>
-<body>
-      <div class="container">
-          <div class="navbar">
-              <div class="hamburger-menu">
-                  <div class="line line-1"></div>
-                  <div class="line line-2"></div>
-                  <div class="line line-3"></div>
-              </div>
-              <ul class="nav-list">
-                <li class="nav-item"><a class="nav-link" style="color: white;" href="{{ url_for('home') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" style="color: white;" href="{{ url_for('about') }}">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" style="color: white;" href="{{ url_for('contact') }}">Contact Us</a></li>
-                <li class="nav-item"><a class="nav-link" style="color: white;" href="{{ url_for('login') }}">Login</a></li>
-                <li class="nav-item"> <a class="nav-link" style="color: white;" href="{{ url_for('register') }}">Register</a> </li>
-
-            </ul>
-          </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../static/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    {% block head %} {% block title %}{% endblock %} {% endblock %}
+  </head>
+  <body>
+    <div class="col-md-8">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+    </div>
+    <div class="container">
+      <div class="navbar">
+        <div class="hamburger-menu">
+          <div class="line line-1"></div>
+          <div class="line line-2"></div>
+          <div class="line line-3"></div>
+        </div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="color: white"
+              href="{{ url_for('home') }}"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="color: white"
+              href="{{ url_for('about') }}"
+              >About Us</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="color: white"
+              href="{{ url_for('contact') }}"
+              >Contact Us</a
+            >
+          </li>
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="color: white"
+              href="{{ url_for('logout') }}"
+              >Logout</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="color: white"
+              href="{{ url_for('account') }}"
+              >Account</a
+            >
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="color: white"
+              href="{{ url_for('login') }}"
+              >Login</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              style="color: white"
+              href="{{ url_for('register') }}"
+              >Register</a
+            >
+          </li>
+          {% endif %}
+        </ul>
       </div>
+    </div>
 
-      {% if message %}
-        <p class="message">{{ message | safe}}</p>
-      {% endif %}
+    {% if message %}
+    <p class="message">{{ message | safe}}</p>
+    {% endif %} {% block content %} {% endblock %}
 
-      {% block content %}
-
-      {% endblock %}
-      
     <script>
-        const menuIcon = document.querySelector(".hamburger-menu");
-        const navbar = document.querySelector(".navbar");
-        menuIcon.addEventListener("click", () => {
-            navbar.classList.toggle("change");
-        })
+      const menuIcon = document.querySelector(".hamburger-menu");
+      const navbar = document.querySelector(".navbar");
+      menuIcon.addEventListener("click", () => {
+        navbar.classList.toggle("change");
+      });
     </script>
-    <script async src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script async  src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <script async  src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script
+      async
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"
+    ></script>
+    <script
+      async
+      src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"
+    ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+  </body>
 </html>
