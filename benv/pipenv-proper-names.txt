@@ -1,8 +1,0 @@
-Flask
-Flask-SQLAlchemy
-Jinja2
-MarkupSafe
-Pillow
-SQLAlchemy
-Werkzeug
-WTForms

@@ -45,4 +45,4 @@ class ContactForm(FlaskForm):
                         validators=[DataRequired(), Email()])
     feedback = StringField('Feedback',
                            validators=[DataRequired(), Length(min=2)])
-    submit = SubmitField('Contact us')
+    submit = SubmitField('Contact')
