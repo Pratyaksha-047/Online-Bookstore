@@ -1,10 +1,11 @@
 from main import app
 from flask import render_template, url_for, flash, redirect,request
-from main.forms import RegistrationForm, LoginForm
+from main.forms import RegistrationForm, LoginForm , ContactForm
 from main.models import User,Book
 from flask_login import login_user, current_user, logout_user, login_required
+from flask_mail import Message
 #request
-from main import db, bcrypt
+from main import db, bcrypt,mail
 
 @app.route("/")
 @app.route("/home")
@@ -13,7 +14,25 @@ def home():
 
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html')
+    form = ContactForm()
+    msg = Message("Feedback for Online Bookstore Management Website",
+            sender="decodemysteries2021@gmail.com",
+            recipients=["receiver1@gmail.com","receiver2@gmail.com"])
+
+    msg.body = '''Hey developers,
+    A Client just viewed your website. The Details of feedback are:
+                  
+    Name of client: %s
+    Email address: %s
+    Feedback from client: %s
+    '''%(form.name.data,form.email.data,form.feedback.data)
+    mail.send(msg)
+    
+    if form.validate_on_submit():
+        flash('Your feedback has been sent! We will get back to you shortly', 'success')
+        return redirect(url_for('home'))
+
+    return render_template('contact.html',title='Contact',form=form)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
