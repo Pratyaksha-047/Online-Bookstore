@@ -13,7 +13,11 @@
 body {
     background: black;
     color: white;
-    font-family: 'Exo', sans-serif;
+    font-family: 'poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Raleway';
 }
 
 a{
@@ -36,7 +40,7 @@ ul {
 
 .top-header{
     font-size: 100px; 
-    font-family: 'Exo', sans-serif; 
+    /* font-family: 'Exo', sans-serif;  */
     letter-spacing: 10px; 
     font-weight: bolder;
 }

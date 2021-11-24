@@ -1,0 +1,53 @@
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.underline-small-footer{
+    margin-bottom: 50px;
+    display:inline-block;
+    position:relative;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    }
+    .underline-small-footer::after{
+    content:'';
+    height:3px;
+    width:70%;
+    background: #af7352;
+    position:absolute;
+    right: 30%;
+    bottom:-15px;
+    }
+
+    .social-div {
+        display: flex;
+        margin-top: 50px;
+    }
+    
+    .social-icon {
+        margin: 20px;
+        font-size: 30px;
+        border-radius: 50%;
+        padding: 10px 5px;
+    }
+
+    .info-heading {
+        font-family: 'Nunito';
+        font-weight: bolder;
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+
+    .icon {
+        font-size: 25px;
+        margin: 0 20px;
+    }
