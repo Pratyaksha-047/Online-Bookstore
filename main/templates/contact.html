@@ -1,49 +1,358 @@
-{% extends "base.html" %} {% block content %}
-<div class="content-section">
-  <form method="POST" action="">
-    {{ form.hidden_tag() }}
-    <fieldset class="form-group">
-      <legend class="border-bottom mb-4">Contact Us</legend>
-      <div class="form-group">
-        {{ form.name.label(class="form-control-label") }} {% if form.name.errors
-        %} {{ form.name(class="form-control form-control-lg is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.name.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %} {{ form.name(class="form-control form-control-lg") }} {%
-        endif %}
-      </div>
-      <div class="form-group">
-        {{ form.email.label(class="form-control-label") }} {% if
-        form.email.errors %} {{ form.email(class="form-control form-control-lg
-        is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.email.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %} {{ form.email(class="form-control form-control-lg") }} {%
-        endif %}
-      </div>
-      <div class="form-group">
-        {{ form.feedback.label(class="form-control-label") }} {% if
-        form.feedback.errors %} {{ form.feedback(class="form-control
-        form-control-lg is-invalid") }}
-        <div class="invalid-feedback">
-          {% for error in form.feedback.errors %}
-          <span>{{ error }}</span>
-          {% endfor %}
-        </div>
-        {% else %} {{ form.feedback(class="form-control form-control-lg") }} {%
-        endif %}
-      </div>
-    </fieldset>
-    <div class="form-group">
-      {{ form.submit(class="btn btn-outline-info") }}
-    </div>
-  </form>
-</div>
+{% extends "base.html" %} 
 
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/contact.css')}}">
+<style>
+    body {
+        font-family: 'Exo', sans-serif;
+        height: 100vh;
+        /* background-color: #000;
+        color: white; */
+    }
+
+    .color-div {
+        background-color: blanchedalmond;
+        height: 25vh;
+        top: 40vh;
+        position: absolute;
+        z-index: -999;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #70442d;
+        /* background-color: #f8f5f5; */
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    input:focus,
+    textarea:focus {
+        outline: none;
+        background-color: rgb(255, 248, 236);
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .submit-btn {
+        padding: 10px;
+        background-color: #af7352;
+        color: white;
+        outline: none;
+        border: none;
+        margin: 10px 0;
+        width: 60%;
+        font-weight: bolder;
+        width: 100%;
+    }
+
+    .info-div {
+        margin-left: 100px;
+        margin-right: 50px;
+        margin-top: 50px;
+    }
+
+    .flip-card {
+        background-color: transparent;
+        width: 90%;
+        height: 90%;
+        perspective: 1000px;
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .flip-card-front {
+        background-color: #bbb;
+        color: black;
+    }
+
+    .flip-card-back {
+        background-color: #70442d;
+        color: white;
+        transform: rotateY(180deg);
+        text-align: left;
+    }
+
+    .info-heading {
+        font-family: 'Nunito';
+        font-weight: bolder;
+        font-size: 20px;
+        margin-bottom: 5px;
+        margin-top: 15px;
+    }
+
+    .icon {
+        font-size: 30px;
+        margin: 0 20px;
+    }
+
+    .social-div {
+        position: absolute;
+        right: 100px;
+        bottom: 30px;
+        display: flex;
+    }
+
+    .social-icon {
+        margin: 20px;
+        /* background: #af7352; */
+        /* color: white; */
+        color: #af7352;
+        border-radius: 50%;
+        padding: 10px 5px;
+    }
+
+    .custom-icon {
+        font-size: 30px;
+        height: 100%;
+        /* color: white; */
+        color: #af7352;
+        margin: 0 10px;
+    }
+
+    aside {
+        width: 10px;
+        background: #70442d;
+        position: absolute;
+        top: 0;
+        right: 30px;
+        min-height: 50%;
+        z-index: 0;
+        margin: -1em auto 75px auto;
+    }
+
+    aside:before,
+    aside:after {
+        content: '';
+        display: block;
+        border: 40px solid transparent;
+        border-top-width: 50px;
+        border-bottom-width: 50px;
+        position: absolute;
+        bottom: -50px;
+        z-index: -1;
+    }
+
+    aside:before {
+        border-left-color: #70442d;
+        left: 0;
+    }
+
+    aside:after {
+        border-right-color: #70442d;
+        right: 0;
+    }
+
+    aside nav {
+        font-size: 12pt;
+        padding: 2em 0;
+        text-align: center;
+    }
+
+    @media (min-width: 500px) {
+        aside {
+            float: left;
+            width: 80px;
+        }
+
+        aside {
+            margin-bottom: 0;
+        }
+    }
+
+    #circ {
+        font-size: 3.5vmin;
+        font-family: 'cousine', monospace;
+        text-transform: uppercase;
+        animation: spin 14s linear infinite;
+        position: fixed;
+        bottom: -20%;
+        left: 3%;
+        color: #70442d;
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .fuddu-anchor{
+        color: white;
+        text-decoration: none;
+    }
+    .fuddu-anchor:hover {
+        color: white;
+        text-decoration: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- <h1>CONTACT PAGE</h1> -->
+<h4 style="position: absolute; top: 10%; left: 5%; font-size: 30px; color: #cc8964;">Let us know what's on your mind
+</h4>
+<h5 style="position: absolute; top: 18%; left: 20%; font-size: 20px; color: #e7b69c;">Hover on image to know more <i
+        class="fas fa-hand-point-right"></i></h5>
+<div class="container" style="margin-top: 15vh;">
+    <div class="row">
+        <div class="col-lg-5"
+            style="box-shadow: 5px 5px 20px 0 rgb(0 0 0 / 40%); height: 60vh; margin: 5vh; background-color: white; transform: translate(15%, 15%); z-index: 1; padding: 50px;">
+            <form action="">
+                <h1 style="text-align: center; color: #70442d;">CONTACT US</h1>
+                <div class="content-section" style="margin-top: 12%;">
+                    <form method="POST" action="">
+                      {{ form.hidden_tag() }}
+                      <fieldset class="form-group">
+                        <div class="form-group">
+                          {% if form.name.errors
+                          %} {{ form.name(class="form-control form-control-lg is-invalid") }}
+                          <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                          </div>
+                          {% else %} {{ form.name(class="form-control form-control-lg") }} {%
+                          endif %}
+                        </div>
+                        <div class="form-group">
+                          {% if
+                          form.email.errors %} {{ form.email(class="form-control form-control-lg
+                          is-invalid") }}
+                          <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                          </div>
+                          {% else %} {{ form.email(class="form-control form-control-lg") }} {%
+                          endif %}
+                        </div>
+                        <div class="form-group">
+                          {% if
+                          form.feedback.errors %} {{ form.feedback(class="form-control
+                          form-control-lg is-invalid") }}
+                          <div class="invalid-feedback">
+                            {% for error in form.feedback.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                          </div>
+                          {% else %} {{ form.feedback(class="form-control form-control-lg") }} {%
+                          endif %}
+                        </div>
+                      </fieldset>
+                      <div class="form-group">
+                        {{ form.submit(class="btn btn-dark submit-btn") }}
+                      </div>
+                    </form>
+                  </div>
+            </form>
+        </div>
+        <div class="col-lg-6" style="transform: translate(-10%, -5%);">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="https://images.pexels.com/photos/9969204/pexels-photo-9969204.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                            alt="Avatar" style="height: 100%; width: 100%; object-fit: cover;">
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="info-div">
+                            <p>Click on email id to write us a mail and on address to know our location.</p>
+                            <div style="display: flex;">
+                                <div style="margin: auto 0;"><i class="far fa-clock icon"></i></div>
+                                <div>
+                                    <p class="info-heading"> OPENING HOURS</p>
+                                    <p>24 / 7 hours</p>
+                                </div>
+                            </div>
+                            <div style="display: flex;">
+                                <div style="margin: auto 0;"><i class="far fa-envelope icon"></i></div>
+                                <div>
+                                    <p class="info-heading"> MAIL </p>
+                                    <p class="info"><a class="fuddu-anchor" rel="nofollow noreferrer" href="mailto:punerva21@gmail.com"> lorem@gmail.com</a></p>
+                                </div>
+                            </div>
+                            <div style="display: flex;">
+                                <div style="margin: auto 0;"><i class="fas fa-phone icon"></i></div>
+                                <div>
+                                    <p class="info-heading"> PHONE </p>
+                                    <p class="info"> +91-338373XXXX</p>
+                                </div>
+                            </div>
+                            <div style="display: flex;">
+                                <div style="margin: auto 0;"><i class="fas fa-map-marker-alt icon"></i></div>
+                                <div>
+                                    <p class="info-heading"> MAPS </p>
+                                    <p class="info"><a href="#" class="show_hide fuddu-anchor">Kashmere gate, Delhi</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <img src="https://images.pexels.com/photos/9969204/pexels-photo-9969204.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" style="height: 80vh; width: 100%; object-fit: cover;"> -->
+        </div>
+    </div>
+</div>
+<h5 style="position: absolute; bottom: 15%; right: 20%; font-size: 20px; color: #e7b69c;">Follow us and get latest
+    offers!</h5>
+<div class="social-div">
+    <div class="social-icon"><i class="fab fa-facebook-f custom-icon"></i></div>
+    <div class="social-icon"><i class="fab fa-instagram custom-icon"></i></div>
+    <div class="social-icon"><i class="fab fa-twitter custom-icon"></i></div>
+    <div class="social-icon"><i class="fab fa-linkedin-in custom-icon"></i></div>
+    <!-- <ul> 
+        <li> 
+            <a href="https://facebook.com"><i class="custom-icon fab fa-facebook-f" style="margin-left: 0;"></i></a> 
+        </li> 
+        <li> 
+            <a href="https://instagram.com"><i class="custom-icon fab fa-instagram"></i></a> 
+        </li> 
+        <li> 
+            <a href="https://twitter.com"><i class="custom-icon fab fa-twitter"></i> </a> 
+        </li> 
+        <li> 
+            <a href="https://linkedin.com"><i class="custom-icon fab fa-linkedin-in"></i></a> 
+        </li> 
+    </ul> -->
+</div>
+<aside>
+    <div> </div>
+</aside>
+<div class="container-fluid color-div"></div>
+<div id="circ">
+    &nbsp; Fiction . Adventure . Comic . Mystery . Fantasy . Horror .
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/circletype@2.3.0/dist/circletype.min.js"></script>
+
+<script>
+    let circ = new CircleType(document.getElementById('circ'));
+    circ.raduis(360);
+</script>
 {% endblock %}

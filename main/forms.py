@@ -40,9 +40,9 @@ class LoginForm(FlaskForm):
     
 class ContactForm(FlaskForm):
     name = StringField('Name',
-                           validators=[DataRequired(), Length(min=2, max=20)])
+                           validators=[DataRequired(), Length(min=2, max=20)], render_kw={"placeholder": "Name"})
     email = StringField('Email',
-                        validators=[DataRequired(), Email()])
+                        validators=[DataRequired(), Email()], render_kw={"placeholder": "Email"})
     feedback = StringField('Feedback',
-                           validators=[DataRequired(), Length(min=2)])
+                           validators=[DataRequired(), Length(min=2)], render_kw={"placeholder": "Message"})
     submit = SubmitField('Contact')
