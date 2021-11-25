@@ -1,7 +1,7 @@
 from main import app
 from flask import render_template, url_for, flash, redirect,request
-from main.forms import RegistrationForm, LoginForm , ContactForm
-from main.models import User,Book
+from main.forms import RegistrationForm, LoginForm , ContactForm , UpdateAccountForm,ResetPasswordForm
+from main.models import User
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 #request
@@ -71,7 +71,32 @@ def logout():
 def about():
     return render_template('about.html')
 
-@app.route("/account")
+@app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
-    return render_template('account.html', title='Account')
+    form1 = UpdateAccountForm()
+    form2 = ResetPasswordForm()
+    if form1.validate_on_submit():
+        current_user.name = form1.name.data
+        current_user.phone = form1.phone.data
+        current_user.address = form1.address.data
+        current_user.email = form1.email.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form1.name.data = current_user.name
+        form1.email.data = current_user.email
+        form1.phone.data = current_user.phone
+        form1.address.data = current_user.address
+        
+    if form2.validate_on_submit():
+        if bcrypt.check_password_hash(current_user.password, form2.old_password.data):
+            current_user.password = bcrypt.generate_password_hash(form2.new_password.data).decode('utf-8')
+            db.session.commit()
+            flash('Password Changed', 'Success')
+            return redirect(url_for('account'))
+        else:
+            flash('Old Password not changed', 'danger')
+        
+    return render_template('account.html', title='Account', account_form=form1, password_form =form2)

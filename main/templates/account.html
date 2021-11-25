@@ -1,4 +1,147 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 {% block content %}
-    <h1>{{ current_user.name }}</h1>
+<div class="content-section">
+        <div class="media-body">
+          <h2 class="account-heading">{{ current_user.name }}</h2>
+          <p class="text-secondary">Phone : {{ current_user.phone }}</p>
+          <p class="text-secondary">Address : {{ current_user.address }}</p>
+          <p class="text-secondary">Email : {{ current_user.email }}</p>
+        </div>
+
+        <!--Update Account-->
+        <button onclick="Updateaccountfunction()">Edit account</button>
+        <div id="Accountformdiv" style="display:none">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ account_form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Account Info</legend>
+                <div class="form-group">
+                    {{ account_form.name.label(class="form-control-label") }}
+
+                    {% if account_form.name.errors %}
+                        {{ account_form.name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in account_form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ account_form.name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ account_form.phone.label(class="form-control-label") }}
+                    {% if account_form.phone.errors %}
+                    {{ account_form.phone.label(class="form-control-label") }}
+                        {{ account_form.phone(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in account_form.phone.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ account_form.phone(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ account_form.address.label(class="form-control-label") }}
+                    {% if account_form.address.errors %}
+                        {{ account_form.address(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in account_form.address.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ account_form.address(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ account_form.email.label(class="form-control-label") }}
+                    {% if account_form.email.errors %}
+                        {{ account_form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in account_form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ account_form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>   
+            </fieldset>
+            <div class="form-group">
+                {{ account_form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+        </div>
+
+        <!--Reset Password-->
+        <button onclick="UpdatePasswordfunction()">Reset password</button>
+        <div id="Passwordformdiv" style="display:none">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ password_form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Password</legend>
+                <div class="form-group">
+                    {{ password_form.old_password.label(class="form-control-label") }}
+
+                    {% if password_form.old_password.errors %}
+                        {{ password_form.old_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in password_form.old_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ password_form.old_password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ password_form.new_password.label(class="form-control-label") }}
+                    {% if password_form.new_password.errors %}
+                    {{ password_form.new_password.label(class="form-control-label") }}
+                        {{ password_form.new_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in password_form.new_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ password_form.new_password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ password_form.confirm_new_password.label(class="form-control-label") }}
+                    {% if password_form.confirm_new_password.errors %}
+                        {{ password_form.confirm_new_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in password_form.confirm_new_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ password_form.confirm_new_password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div> 
+            </fieldset>
+            <div class="form-group">
+                {{ password_form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+        </div>
+    </div>
+
+<script type="text/javascript">
+function Updateaccountfunction() {
+    var T = document.getElementById("Accountformdiv");
+    T.style.display = "block";  // <-- Set it to block
+}
+
+function UpdatePasswordfunction() {
+    var T = document.getElementById("Passwordformdiv");
+    T.style.display = "block";  // <-- Set it to block
+}
+</script>
+    
 {% endblock content %}
