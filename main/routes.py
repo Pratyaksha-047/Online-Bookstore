@@ -15,21 +15,20 @@ def home():
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():
     form = ContactForm()
-    msg = Message("Feedback for Online Bookstore Management Website",
+    
+    if form.validate_on_submit():
+        msg = Message("Feedback for Online Bookstore Management Website",
             sender="decodemysteries2021@gmail.com",
             recipients=["receiver1@gmail.com","receiver2@gmail.com"])
 
-    msg.body = '''Hey developers,
-    A Client just viewed your website. The Details of feedback are:
+        msg.body = '''Hey developers,
+        A Client just viewed your website. The Details of feedback are:
                   
-    Name of client: %s
-    Email address: %s
-    Feedback from client: %s
-    '''%(form.name.data,form.email.data,form.feedback.data)
-    mail.send(msg)
-    
-    if form.validate_on_submit():
-        flash('Your feedback has been sent! We will get back to you shortly', 'success')
+        Name of client: %s
+        Email address: %s
+        Feedback from client: %s
+        '''%(form.name.data,form.email.data,form.feedback.data)
+        mail.send(msg)
         return redirect(url_for('home'))
 
     return render_template('contact.html',title='Contact',form=form)
