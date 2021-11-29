@@ -1,0 +1,100 @@
+{% extends "base.html" %} 
+{% block content %}
+<form method="POST" action="" enctype="multipart/form-data">
+{{ form.hidden_tag() }}
+<fieldset class="form-group">
+    <legend class="border-bottom mb-4">Account Info</legend>
+    <div class="form-group">
+        {{ form.title.label(class="form-control-label") }}
+
+        {% if form.title.errors %}
+            {{ form.title(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.title.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.title(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.author.label(class="form-control-label") }}
+        {% if form.author.errors %}
+            {{ form.author(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.author.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.author(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.publishing_year.label(class="form-control-label") }}
+        {% if form.publishing_year.errors %}
+            {{ form.publishing_year(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.publishing_year.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.publishing_year(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.image_file.label() }}
+        {{ form.image_file(class="form-control-file") }}
+        {% if form.image_file.errors %}
+            {% for error in form.image_file.errors %}
+                <span class="text-danger">{{ error }}</span></br>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.genre.label(class="form-control-label") }}
+        {% if form.genre.errors %}
+            {{ form.genre(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.genre.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.genre(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.nocopies.label(class="form-control-label") }}
+        {% if form.nocopies.errors %}
+            {{ form.nocopies(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.nocopies.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.nocopies(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+    <div class="form-group">
+        {{ form.description.label(class="form-control-label") }}
+        {% if form.description.errors %}
+            {{ form.description(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.description.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.description(class="form-control form-control-lg") }}
+        {% endif %}
+    </div>
+</fieldset>
+<div class="form-group">
+    {{ form.submit(class="btn btn-outline-info") }}
+</div>
+</form>
+{% endblock content %}

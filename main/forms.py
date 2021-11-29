@@ -1,9 +1,13 @@
 from flask_wtf import FlaskForm
 import phonenumbers
+from flask_wtf.file import FileField,FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms.fields.core import IntegerField
+from wtforms.fields.simple import FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from main.models import User
 from flask_login import current_user
+import string
 
 
 class RegistrationForm(FlaskForm):
@@ -78,3 +82,23 @@ class ResetPasswordForm(FlaskForm):
     confirm_new_password = PasswordField('Confirm New Password',
                                      validators=[DataRequired(), EqualTo('new_password')])
     submit = SubmitField('Update password')
+    
+class Add_bookForm(FlaskForm):
+    title = StringField('Title',
+                           validators=[DataRequired(), Length(min=1, max=50)])
+    author = StringField('Author',
+                           validators=[DataRequired(), Length(min=1, max=50)])
+    publishing_year = IntegerField('Publishing year', validators=[DataRequired()])
+    image_file= FileField('Cover Image',validators=[DataRequired(),FileAllowed(['jpg','png'])])
+    genre = StringField('Genre',
+                        validators=[DataRequired()])
+    nocopies = IntegerField('No. of Copies', validators=[DataRequired()])
+    description = StringField('Description',
+                           validators=[DataRequired()])
+    submit = SubmitField('Sign Up')
+        
+    
+    def validate_genre(self, genre):
+        avail_genre=['fiction','fantasy','adventure','comic','mystery','thriller','horror','classics','romance','autobiographies']
+        if (genre.data).lower() not in avail_genre:
+            raise ValidationError('Given genre is not available')

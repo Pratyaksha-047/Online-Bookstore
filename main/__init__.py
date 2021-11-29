@@ -2,7 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
-from flask_mail import Mail, Message
+from flask_admin import Admin
+from flask_mail import Mail
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '7adc3fc0925de76b452faf237e6e1f7e'
@@ -21,6 +22,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+admin = Admin(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 

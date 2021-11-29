@@ -1,11 +1,15 @@
 from main import app
+import os
+import secrets
+from PIL import Image
 from flask import render_template, url_for, flash, redirect,request
-from main.forms import RegistrationForm, LoginForm , ContactForm , UpdateAccountForm,ResetPasswordForm
-from main.models import User
+from main.forms import RegistrationForm, LoginForm , ContactForm , UpdateAccountForm,ResetPasswordForm, Add_bookForm
+from main.models import Book, User
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
-#request
-from main import db, bcrypt,mail
+from flask_admin.contrib.sqla import ModelView
+from main.decorators import admin_required
+from main import db, bcrypt,mail, admin
 
 @app.route("/")
 @app.route("/home")
@@ -71,6 +75,33 @@ def logout():
 def about():
     return render_template('about.html')
 
+@app.route("/admin", methods=['GET', 'POST'])
+@login_required
+@admin_required
+def adminfunc():
+    pass
+class myModelView(ModelView):
+    def is_accessible(self):
+        return (current_user.is_admin==True)
+    
+admin.add_view(myModelView(User,db.session))
+admin.add_view(myModelView(Book,db.session))
+
+@app.route("/add_book", methods=['GET', 'POST'])
+@login_required
+@admin_required
+def add_book():
+    form= Add_bookForm() 
+    if form.validate_on_submit():
+        image_f = save_picture(form.image_file.data)
+        book = Book(title=form.title.data, author=form.author.data, publishing_year=form.publishing_year.data, genre=form.genre.data, nocopies=form.nocopies.data,description=form.description.data,image_file=image_f)
+        db.session.add(book)
+        db.session.commit()
+        flash('A book has been added to the collection!', 'success')
+        return redirect(url_for('add_book'))
+    return render_template('add_book.html',title='Add_book', form=form)
+
+
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
@@ -100,3 +131,19 @@ def account():
             flash('Old Password not changed', 'danger')
         
     return render_template('account.html', title='Account', account_form=form1, password_form =form2)
+
+'''def image():
+    image_file = url_for('static/img',filename='books/'+)'''
+    
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_picture.filename)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(app.root_path, 'static\\img\\books', picture_fn)
+
+    output_size = (125, 125)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+
+    return picture_fn
