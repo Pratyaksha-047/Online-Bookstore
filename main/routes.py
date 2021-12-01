@@ -81,6 +81,9 @@ def about():
 def adminfunc():
     pass
 class myModelView(ModelView):
+    edit_template = 'edit_user.html'
+    create_template = 'create_user.html'
+    list_template = 'list_user.html'
     def is_accessible(self):
         return (current_user.is_admin==True)
     
