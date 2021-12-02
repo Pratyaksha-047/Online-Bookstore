@@ -25,7 +25,7 @@
 </head>
 
 <body>
-  <div class="col-md-8 msg">
+  <div class="col-md-12 msg">
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {% for category, message in messages %}
     <div class="alert alert-{{ category }}">{{ message }}</div>
@@ -45,32 +45,28 @@
         <li class="nav-item">
           <a class="nav-link" style="color: white" href="{{ url_for('about') }}">About Us</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color: white" href="{{ url_for('contact') }}">Contact Us</a>
-        </li>
         {% if current_user.is_authenticated %}
         {% if current_user.is_admin == 1  %}
-        <li class="nav-item">
-          <a class="nav-link" style="color: white" href="{{ url_for('adminfunc') }}">Admin</a>
-        </li>
         <li class="nav-item">
           <a class="nav-link" style="color: white" href="{{ url_for('add_book') }}">Add Book</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="color: white" href="{{ url_for('account') }}">Account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color: white" href="{{ url_for('logout') }}">Logout</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-          <a class="nav-link" style="color: white" href="{{ url_for('account') }}">Account</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color: white" href="{{ url_for('logout') }}">Logout</a>
+          <a class="nav-link" style="color: white" href="{{ url_for('adminfunc') }}">Admin</a>
         </li>
         {%endif%}
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" href="{{ url_for('contact') }}">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" href="{{ url_for('account') }}">Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" href="{{ url_for('logout') }}">Logout</a>
+        </li>
         {% else %}
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" href="{{ url_for('contact') }}">Contact Us</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" style="color: white" href="{{ url_for('login') }}">Login</a>
         </li>

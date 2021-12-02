@@ -143,3 +143,7 @@ li{
     width: 100%;
     padding: 0;
 }
+
+.msg{
+    margin-top: -1px;
+}

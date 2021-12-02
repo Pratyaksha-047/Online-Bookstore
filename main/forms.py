@@ -95,7 +95,7 @@ class Add_bookForm(FlaskForm):
     nocopies = IntegerField('No. of Copies', validators=[DataRequired()])
     description = StringField('Description',
                            validators=[DataRequired()])
-    submit = SubmitField('Sign Up')
+    submit = SubmitField('Add Book')
         
     
     def validate_genre(self, genre):

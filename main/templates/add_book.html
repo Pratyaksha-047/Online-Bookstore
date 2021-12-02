@@ -1,100 +1,180 @@
 {% extends "base.html" %} 
-{% block content %}
-<form method="POST" action="" enctype="multipart/form-data">
-{{ form.hidden_tag() }}
-<fieldset class="form-group">
-    <legend class="border-bottom mb-4">Account Info</legend>
-    <div class="form-group">
-        {{ form.title.label(class="form-control-label") }}
 
-        {% if form.title.errors %}
-            {{ form.title(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.title.errors %}
-                    <span>{{ error }}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.title(class="form-control form-control-lg") }}
-        {% endif %}
-    </div>
-    <div class="form-group">
-        {{ form.author.label(class="form-control-label") }}
-        {% if form.author.errors %}
-            {{ form.author(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.author.errors %}
-                    <span>{{ error }}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.author(class="form-control form-control-lg") }}
-        {% endif %}
-    </div>
-    <div class="form-group">
-        {{ form.publishing_year.label(class="form-control-label") }}
-        {% if form.publishing_year.errors %}
-            {{ form.publishing_year(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.publishing_year.errors %}
-                    <span>{{ error }}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.publishing_year(class="form-control form-control-lg") }}
-        {% endif %}
-    </div>
-    <div class="form-group">
-        {{ form.image_file.label() }}
-        {{ form.image_file(class="form-control-file") }}
-        {% if form.image_file.errors %}
-            {% for error in form.image_file.errors %}
-                <span class="text-danger">{{ error }}</span></br>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <div class="form-group">
-        {{ form.genre.label(class="form-control-label") }}
-        {% if form.genre.errors %}
-            {{ form.genre(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.genre.errors %}
-                    <span>{{ error }}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.genre(class="form-control form-control-lg") }}
-        {% endif %}
-    </div>
-    <div class="form-group">
-        {{ form.nocopies.label(class="form-control-label") }}
-        {% if form.nocopies.errors %}
-            {{ form.nocopies(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.nocopies.errors %}
-                    <span>{{ error }}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.nocopies(class="form-control form-control-lg") }}
-        {% endif %}
-    </div>
-    <div class="form-group">
-        {{ form.description.label(class="form-control-label") }}
-        {% if form.description.errors %}
-            {{ form.description(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.description.errors %}
-                    <span>{{ error }}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.description(class="form-control form-control-lg") }}
-        {% endif %}
-    </div>
-</fieldset>
-<div class="form-group">
-    {{ form.submit(class="btn btn-outline-info") }}
+{% block head %}
+<title>HOME PAGE</title>
+<link rel="stylesheet" href="{{url_for('static', filename='css/add_book.css')}}">
+<style>
+    body{
+        background-color: #f0eee8;
+    }
+    .bg{
+        background-image: url("https://images.pexels.com/photos/5499560/pexels-photo-5499560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+        height: 100vh; 
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* width: 50vw; */
+        padding-top: 10vh; 
+        /* filter: blur(5px); */
+        /* -webkit-filter: blur(8px); */
+        /* position: absolute; */
+        object-fit: cover;
+    }
+    .form-group{
+        display: flex;
+    }
+    .form-control-label{
+        width: 200px;
+        font-size: 18px;
+        font-weight: 700;
+        padding-top: 2%;
+    }
+    .form-control-lg{
+        border: none;
+        border-radius: 0;
+        border-bottom: 2px solid black;
+        background: none;
+    }
+    .form-control-lg:focus{
+        outline: none;
+        border: none;
+    }
+    .btn{
+        background-color: #70442d;
+        border: none;
+        /* border-radius: 25px; */
+        padding: 15px 50px;
+        margin: 10px;
+        box-shadow: 2px 2px 5px #949090;
+    }
+    .form-control-file{
+        padding-top: 2%;
+    }
+    .underline-small-footer{
+        margin-bottom: 50px;
+        display:inline-block;
+        position:relative;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+    .underline-small-footer::after{
+        content:'';
+        height:3px;
+        width:70%;
+        background: #af7352;
+        position:absolute;
+        right: 30%;
+        bottom:-15px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+<div class="row">
+<div class="col-lg-5 bg"> 
+    <!-- <img src="https://images.pexels.com/photos/6309855/pexels-photo-6309855.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" style="height: 100%; width: 100%; object-fit: cover;"> -->
 </div>
-</form>
+    <div class="col-lg-7" style="padding: 30px 50px; margin-top: 5vh; font-family: 'Exo'; padding: 30px 100px 0 100px;">
+        <h1 class="underline-small-footer"  style="font-size: 50px; text-align: center; padding: 10px;">ADD BOOK</h1>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <!-- <legend>Account Info</legend> -->
+                <div class="form-group">
+                    {{ form.title.label(class="form-control-label") }}
+                    
+                    {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.title(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.author.label(class="form-control-label") }}
+                    {% if form.author.errors %}
+                    {{ form.author(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.author.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.author(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.publishing_year.label(class="form-control-label") }}
+                    {% if form.publishing_year.errors %}
+                    {{ form.publishing_year(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.publishing_year.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.publishing_year(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.image_file.label(class="form-control-label") }}
+                    {{ form.image_file(class="form-control-file") }}
+                    {% if form.image_file.errors %}
+                    {% for error in form.image_file.errors %}
+                    <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.genre.label(class="form-control-label") }}
+                    {% if form.genre.errors %}
+                    {{ form.genre(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.genre.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.genre(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.nocopies.label(class="form-control-label") }}
+                    {% if form.nocopies.errors %}
+                    {{ form.nocopies(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.nocopies.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.nocopies(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.description.label(class="form-control-label") }}
+                    {% if form.description.errors %}
+                    {{ form.description(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.description.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.description(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div style="text-align: center;">
+                {{ form.submit(class="btn btn-dark") }}
+            </div>
+        </form>
+    </div>
+</div>
+</div>
 {% endblock content %}
