@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <img class="book-img" src="{{ url_for('static', filename='img/books/' + book.image_file) }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <h2 class="book-title">{{ book.title }}</h2>
+        <h3><small class="text-muted">{{ book.author }}</small></h3>
+      </div>
+	  <h5 class="article-content">&#8377;{{ book.price }}</h5>
+	  <h6 class="article-content">About Book : </h6>
+      <p class="article-content">{{ book.description }}</h2>
+	  <h6 class="article-content">Genre: {{ book.genre }}</h6>
+      <h6 class="article-content">Publication Year: {{ book.publishing_year }}</h6>
+	  {% if book.nocopies==0: %}
+		<h2 class="book-title">Out Of Stock</h2>
+	  {% else: %}
+		<div>
+			<a class="btn btn-success btn-sm mt-1 mb-1" >Buy now</a>
+		</div>
+	  {% endif %}
+    </div>
+  </article>
+{% endblock content %}

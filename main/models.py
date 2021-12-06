@@ -31,7 +31,8 @@ class Book(db.Model):
     genre = db.Column(db.String(10))
     nocopies= db.Column(db.Integer)
     description = db.Column(db.String(5000))
+    price = db.Column(db.Integer, nullable= False)
 
     def __repr__(self):
-        return f"Book('{self.title}','{self.author}','{self.image_file}')"
+        return f"Book('{self.title}','{self.author}','{self.image_file}','{self.price}')"
     

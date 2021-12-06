@@ -95,6 +95,7 @@ class Add_bookForm(FlaskForm):
     nocopies = IntegerField('No. of Copies', validators=[DataRequired()])
     description = StringField('Description',
                            validators=[DataRequired()])
+    price = IntegerField('Price', validators=[DataRequired()])
     submit = SubmitField('Add Book')
         
     

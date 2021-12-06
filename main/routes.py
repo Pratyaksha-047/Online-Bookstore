@@ -97,7 +97,7 @@ def add_book():
     form= Add_bookForm() 
     if form.validate_on_submit():
         image_f = save_picture(form.image_file.data)
-        book = Book(title=form.title.data, author=form.author.data, publishing_year=form.publishing_year.data, genre=form.genre.data, nocopies=form.nocopies.data,description=form.description.data,image_file=image_f)
+        book = Book(title=form.title.data, author=form.author.data, publishing_year=form.publishing_year.data, genre=form.genre.data, nocopies=form.nocopies.data,description=form.description.data,image_file=image_f, price=form.price.data)
         db.session.add(book)
         db.session.commit()
         flash('A book has been added to the collection!', 'success')
@@ -150,3 +150,13 @@ def save_picture(form_picture):
     i.save(picture_path)
 
     return picture_fn
+
+@app.route("/book", methods=['GET', 'POST'])
+def book():
+    books=Book.query.all()
+    return render_template('book.html', books=books)
+
+@app.route("/book_info/<int:book_id>")
+def book_info(book_id):
+    book = Book.query.get_or_404(book_id)
+    return render_template('book_info.html', title=book.title, book=book)
