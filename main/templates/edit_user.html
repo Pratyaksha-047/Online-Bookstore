@@ -2,51 +2,51 @@
 
 {% block head_css %}
 <link rel="icon" href="../static/img/icon2.png">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/admin/user.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/admin/user.css')}}">
 {% endblock %}
 
 {% block body %}
 <div style="position: absolute; left: 0; width: 25%; background-color: #70442d; height: 100vh; margin-top: -8px;">
-    <ul class="nav-list-m">
-        <div class="con" style="display: flex;">
-            <img src="../../static/img/icon2.png" alt="" style="height: 40px; width: 40px;">
-            <h3 style="margin: 1%; color: white;">Online-Bookstore</h3>
-        </div>
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('home') }}">Home</a>
-        </li>
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('about') }}">About Us</a>
-        </li>
-        {% if current_user.is_authenticated %}
-        {% if current_user.is_admin == 1  %}
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('add_book') }}">Add Book</a>
-        </li>
-        <li class="nav-item-m" style="background-color: white; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">
-          <a class="nav-link-m" style="color: #70442d;" href="{{ url_for('adminfunc') }}">Admin</a>
-        </li>
-        {%endif%}
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('contact') }}">Contact Us</a>
-        </li>
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('account') }}">Account</a>
-        </li>
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('logout') }}">Logout</a>
-        </li>
-        {% else %}
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('login') }}">Login</a>
-        </li>
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('register') }}">Register</a>
-        </li>
-        {% endif %}
-      </ul>
-  </div>
+  <ul class="nav-list-m">
+    <div class="con" style="display: flex;">
+      <img src="../../static/img/icon2.png" alt="" style="height: 40px; width: 40px;">
+      <h3 style="margin: 1%; color: white;">Online-Bookstore</h3>
+    </div>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('home') }}">Home</a>
+    </li>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('about') }}">About Us</a>
+    </li>
+    {% if current_user.is_authenticated %}
+    {% if current_user.is_admin == 1 %}
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('add_book') }}">Add Book</a>
+    </li>
+    <li class="nav-item-m"
+      style="background-color: white; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">
+      <a class="nav-link-m" style="color: #70442d;" href="{{ url_for('adminfunc') }}">Admin</a>
+    </li>
+    {%endif%}
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('contact') }}">Contact Us</a>
+    </li>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('account') }}">Account</a>
+    </li>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('logout') }}">Logout</a>
+    </li>
+    {% else %}
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('login') }}">Login</a>
+    </li>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('register') }}">Register</a>
+    </li>
+    {% endif %}
+  </ul>
 </div>
-
-    {{ super() }}
+</div>
+{{ super() }}
 {% endblock %}

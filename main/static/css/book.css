@@ -1,0 +1,43 @@
+body{
+    background-color: #f0eee8;
+  }
+
+  .posts{
+    flex: 9;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px 0 40px 100px;
+}
+
+  .each-book{
+    background-color: white;
+    margin: 30px auto;
+    padding: 30px;
+  }
+
+  .media-body{
+    margin-left: 50px;
+  }
+
+  .postDesc{
+    width: 60vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.underline-small-footer{
+    margin-bottom: 50px;
+    display:inline-block;
+    position:relative;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    }
+    .underline-small-footer::after{
+    content:'';
+    height:3px;
+    width:70%;
+    background: #af7352;
+    position:absolute;
+    right: 30%;
+    bottom:-15px;
+    }

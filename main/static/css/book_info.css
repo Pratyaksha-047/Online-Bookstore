@@ -1,0 +1,559 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cardo', Arial, sans-serif;
+    background-color: #f0eee8;
+    /* background:url(http://www.bluesdream.com/case/css3/3d-book-showcase/images/body_bg.jpg); */
+}
+
+h1 {
+    margin: 40px 0;
+}
+
+h2 {
+    margin: 30px 0;
+}
+
+h3 {
+    margin: 20px 0;
+}
+
+h4,
+h5,
+h6 {
+    margin: 10px 0;
+}
+
+.txt-right {
+    text-align: right;
+}
+
+.demo-title {
+    height: 32px;
+    font-size: 32px;
+    color: #92684F;
+    text-align: center;
+    margin: 30px 0 44px 0;
+    text-shadow: 0 2px 4px rgba(41, 48, 58, 0.3);
+}
+
+#book {
+    width: 250px;
+    height: 100%;
+    margin: 10% 10% 0 10%;
+    position: relative;
+    -webkit-transition-duration: .5s;
+    -moz-transition-duration: .5s;
+    -ms-transition-duration: .5s;
+    -o-transition-duration: .5s;
+    transition-duration: .5s;
+    -webkit-perspective: 2000px;
+    -moz-perspective: 2000px;
+    -ms-perspective: 2000px;
+    -o-perspective: 2000px;
+    perspective: 2000px;
+}
+
+.main {
+    width: 250px;
+    height: 300px;
+    color: #92684F;
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition-duration: .5s;
+    -moz-transition-duration: .5s;
+    -ms-transition-duration: .5s;
+    -o-transition-duration: .5s;
+    transition-duration: .5s;
+}
+
+/* = Book Font
+-------------------------------------------------------------- */
+.book-font {
+    width: 250px;
+    height: 310px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    font-size: 15px;
+    text-align: center;
+    text-shadow: 0 2px 0 rgba(30, 35, 45, 1);
+    box-shadow: inset 3px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    -webkit-transform-origin: 0% 50%;
+    -moz-transform-origin: 0% 50%;
+    -ms-transform-origin: 0% 50%;
+    -o-transform-origin: 0% 50%;
+    transform-origin: 0% 50%;
+
+    -webkit-transition-duration: .5s;
+    -moz-transition-duration: .5s;
+    -ms-transition-duration: .5s;
+    -o-transition-duration: .5s;
+    transition-duration: .5s;
+
+    -webkit-transform: translate3d(0, 0, 25px);
+    -moz-transform: translate3d(0, 0, 25px);
+    -ms-transform: translate3d(0, 0, 25px);
+    -o-transform: translate3d(0, 0, 25px);
+    transform: translate3d(0, 0, 25px);
+}
+
+.book-cover {
+    width: 250px;
+    height: 310px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: #29303A 0 200px no-repeat;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.book-cover-back {
+    width: 250px;
+    height: 310px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: #29303A;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    -webkit-transform: rotate3d(0, 1, 0, -180deg);
+    -moz-transform: rotate3d(0, 1, 0, -180deg);
+    -ms-transform: rotate3d(0, 1, 0, -180deg);
+    -o-transform: rotate3d(0, 1, 0, -180deg);
+    transform: rotate3d(0, 1, 0, -180deg);
+}
+
+.title {
+    margin: 70px 0 25px 0;
+    height: 38px;
+    font-size: 38px;
+}
+
+.author {
+    height: 20px;
+    font-size: 20px;
+}
+
+.publisher {
+    width: 100%;
+    position: absolute;
+    bottom: 22px;
+}
+
+/* = Book Page
+-------------------------------------------------------------- */
+.book-page {
+    width: 250px;
+    height: 300px;
+    line-height: 20px;
+    position: absolute;
+    top: 5px;
+    z-index: 9;
+    box-shadow: inset 3px 0 10px rgba(0, 0, 0, 0.1);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+
+    -webkit-transform: translate3d(0, 0, 24px);
+    -moz-transform: translate3d(0, 0, 24px);
+    -ms-transform: translate3d(0, 0, 24px);
+    -o-transform: translate3d(0, 0, 24px);
+    transform: translate3d(0, 0, 24px);
+}
+
+.page {
+    height: 300px;
+    margin: 30px 40px;
+    overflow: hidden;
+}
+
+.book-page h3 {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.book-page p {
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+.page-number {
+    width: 100%;
+    font-size: 13px;
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+}
+
+/* = Book Back
+-------------------------------------------------------------- */
+.book-back {
+    width: 250px;
+    height: 310px;
+    background: #29303A;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    color: white;
+    -webkit-transform: rotate3d(0, 1, 0, -180deg) translate3d(0, 0, 25px);
+    -moz-transform: rotate3d(0, 1, 0, -180deg) translate3d(0, 0, 25px);
+    -ms-transform: rotate3d(0, 1, 0, -180deg) translate3d(0, 0, 25px);
+    -o-transform: rotate3d(0, 1, 0, -180deg) translate3d(0, 0, 25px);
+    transform: rotate3d(0, 1, 0, -180deg) translate3d(0, 0, 25px);
+    z-index: 8;
+}
+
+.book-back .description {
+    font-size: 10px;
+    line-height: 20px;
+    padding: 10px 20px 10px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    height: 100%;
+}
+
+.book-back p {
+    padding: 5px 0;
+}
+
+.isbn {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+}
+
+/* = Book Bone
+-------------------------------------------------------------- */
+.book-bone {
+    width: 50px;
+    height: 310px;
+    background: #29303A;
+    box-shadow: 1px 0 0 #29303A, -1px 0 0 #29303A;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -25px;
+    -webkit-transform: rotate3d(0, 1, 0, -90deg);
+    -moz-transform: rotate3d(0, 1, 0, -90deg);
+    -ms-transform: rotate3d(0, 1, 0, -90deg);
+    -o-transform: rotate3d(0, 1, 0, -90deg);
+    transform: rotate3d(0, 1, 0, -90deg);
+}
+
+.book-bone h2 {
+    width: 280px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 14px;
+    text-align: right;
+    padding: 0 15px;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    transform-origin: 0 0;
+
+    -webkit-transform: rotate(90deg) translateY(-50px);
+    -moz-transform: rotate(90deg) translateY(-50px);
+    -ms-transform: rotate(90deg) translateY(-50px);
+    -o-transform: rotate(90deg) translateY(-50px);
+    transform: rotate(90deg) translateY(-50px);
+}
+
+.book-bone span {
+    font-size: 14px;
+    padding-right: 20px;
+}
+
+/* = Order
+-------------------------------------------------------------- */
+.book-cover:after,
+.book-back:after {
+    /*  */
+    content: "";
+    width: 3px;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.06);
+    box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.book-page,
+.book-top,
+.book-right,
+.book-bottom {
+    background: #EEEFE9;
+}
+
+.book-right {
+    width: 50px;
+    height: 300px;
+    position: absolute;
+    top: 5px;
+    right: -20px;
+    box-shadow: 0 1px 0 #EEEFE9, 0 -1px 0 #EEEFE9;
+    -webkit-transform: rotate3d(0, 1, 0, 90deg);
+    -moz-transform: rotate3d(0, 1, 0, 90deg);
+    -ms-transform: rotate3d(0, 1, 0, 90deg);
+    -o-transform: rotate3d(0, 1, 0, 90deg);
+    transform: rotate3d(0, 1, 0, 90deg);
+}
+
+.book-top {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    -webkit-transform: rotate3d(1, 0, 0, 90deg);
+    -moz-transform: rotate3d(1, 0, 0, 90deg);
+    -ms-transform: rotate3d(1, 0, 0, 90deg);
+    -o-transform: rotate3d(1, 0, 0, 90deg);
+    transform: rotate3d(1, 0, 0, 90deg);
+}
+
+.book-bottom {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 0, 0);
+    -webkit-transform: rotate3d(1, 0, 0, -90deg) translate3d(0, 0, 0);
+    -moz-rotate: rotate3d(1, 0, 0, -90deg) translate3d(0, 0, 0);
+    -ms-rotate: rotate3d(1, 0, 0, -90deg) translate3d(0, 0, 0);
+    -o-rotate: rotate3d(1, 0, 0, -90deg) translate3d(0, 0, 0);
+    rotate: rotate3d(1, 0, 0, -90deg) translate3d(0, 0, 0);
+}
+
+.book-right,
+.book-top,
+.book-bottom {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.view-cover .main {
+    -webkit-transform: rotate3d(0, 1, 0, -20deg);
+    -moz-transform: rotate3d(0, 1, 0, -20deg);
+    -ms-transform: rotate3d(0, 1, 0, -20deg);
+    -o-transform: rotate3d(0, 1, 0, -20deg);
+    transform: rotate3d(0, 1, 0, -20deg);
+}
+
+/* = Flip
+-------------------------------------------------------------- */
+/* Cover */
+.view-cover:hover .main {
+    -webkit-transform: rotate3d(0, 1, 0, -40deg);
+    -moz-transform: rotate3d(0, 1, 0, -40deg);
+    -ms-transform: rotate3d(0, 1, 0, -40deg);
+    -o-transform: rotate3d(0, 1, 0, -40deg);
+    transform: rotate3d(0, 1, 0, -40deg);
+}
+
+/* Cover Back */
+.view-back .main {
+    -webkit-transform: rotate3d(0, 1, 0, 180deg);
+    -moz-transform: rotate3d(0, 1, 0, 180deg);
+    -ms-transform: rotate3d(0, 1, 0, 180deg);
+    -o-transform: rotate3d(0, 1, 0, 180deg);
+    transform: rotate3d(0, 1, 0, 180deg);
+}
+
+.view-back:hover .main {
+    -webkit-transform: rotate3d(0, 1, 0, 140deg);
+    -moz-transform: rotate3d(0, 1, 0, 140deg);
+    -ms-transform: rotate3d(0, 1, 0, 140deg);
+    -o-transform: rotate3d(0, 1, 0, 140deg);
+    transform: rotate3d(0, 1, 0, 140deg);
+}
+
+/* Open */
+.open-book {
+    -webkit-transform: translate3d(50%, 0, 0);
+    -moz-transform: translate3d(50%, 0, 0);
+    -ms-transform: translate3d(50%, 0, 0);
+    -o-transform: translate3d(50%, 0, 0);
+    transform: translate3d(50%, 0, 0);
+}
+
+.open-book .book-font {
+    -webkit-transform: translate3d(0, 0, 25px) rotate3d(0, 1, 0, -160deg);
+    -moz-transform: translate3d(0, 0, 25px) rotate3d(0, 1, 0, -160deg);
+    -ms-transform: translate3d(0, 0, 25px) rotate3d(0, 1, 0, -160deg);
+    -o-transform: translate3d(0, 0, 25px) rotate3d(0, 1, 0, -160deg);
+    transform: translate3d(0, 0, 25px) rotate3d(0, 1, 0, -160deg);
+}
+
+.open-book:hover .main {
+    -webkit-transform: rotate3d(1, 1, 0, 15deg);
+    -moz-transform: rotate3d(1, 1, 0, 15deg);
+    -ms-transform: rotate3d(1, 1, 0, 15deg);
+    -o-transform: rotate3d(1, 1, 0, 15deg);
+    transform: rotate3d(1, 1, 0, 15deg);
+}
+
+/* View Right */
+.view-rotate .main {
+    -webkit-transition-duration: 5s;
+    -moz-transition-duration: 5s;
+    -ms-transition-duration: 5s;
+    -o-transition-duration: 5s;
+    transition-duration: 5s;
+
+    -webkit-transform: rotate3d(0, 1, 0, 360deg);
+    -moz-transform: rotate3d(0, 1, 0, 360deg);
+    -ms-transform: rotate3d(0, 1, 0, 360deg);
+    -o-transform: rotate3d(0, 1, 0, 360deg);
+    transform: rotate3d(0, 1, 0, 360deg);
+}
+
+.view-rotate:hover .main {
+    -webkit-transition-duration: 8s;
+    -moz-transition-duration: 8s;
+    -ms-transition-duration: 8s;
+    -o-transition-duration: 8s;
+    transition-duration: 8s;
+
+    -webkit-transform: rotate3d(0, 1, 0, -360deg);
+    -moz-transform: rotate3d(0, 1, 0, -360deg);
+    -ms-transform: rotate3d(0, 1, 0, -360deg);
+    -o-transform: rotate3d(0, 1, 0, -360deg);
+    transform: rotate3d(0, 1, 0, -360deg);
+}
+
+/* = Opt
+-------------------------------------------------------------- */
+#opt {
+    width: 250px;
+    line-height: 30px;
+    text-align: center;
+    padding: 10px 10px 5px 10px;
+    background: #9b6345;
+    color: white;
+    position: absolute;
+    top: 550px;
+    left: 12%;
+    z-index: 100px;
+}
+
+#opt:after {
+    content: "";
+    width: 105%;
+    height: 104%;
+    position: absolute;
+    top: -4%;
+    left: -5%;
+    border: 4px solid #70442d;
+    z-index: -1;
+}
+
+#opt dt {
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#opt dd {
+    color: white;
+    cursor: pointer;
+    background: rgba(170, 170, 170, 0.1);
+    margin-bottom: 5px;
+}
+
+#opt dd:hover {
+    color: #70442d;
+    box-shadow: inset 2px 0 0 rgba(85, 85, 85, 0.2);
+    background: white;
+}
+
+#opt .cur {
+    color: #70442d;
+    box-shadow: inset 2px 0 0 rgba(85, 85, 85, 0.2);
+    background: white;
+}
+
+.com {
+    background: linear-gradient(to bottom right, #ca998796, #6b483b);
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+    left: 5%;
+    position: absolute;
+    top: 33%;
+    transform: rotateX(260deg);
+    -webkit-box-shadow: 18px -31px 45px 1px rgb(0 0 0 / 67%);
+    box-shadow: 18px -31px 45px 1px rgb(0 0 0 / 67%);
+}
+
+.book-title {
+    font-size: 50px;
+    color: #70442d;
+    font-weight: 800;
+}
+
+.btn {
+    background-color: #70442d;
+    border: none;
+    color: white;
+    /* border-radius: 25px; */
+    padding: 15px 50px;
+    margin: 30px 0;
+    box-shadow: 2px 2px 5px #949090;
+}
+
+a:not([href]):not([tabindex]) {
+    color: white;
+}
+
+a:not([href]):not([tabindex]):hover {
+    color: white;
+}

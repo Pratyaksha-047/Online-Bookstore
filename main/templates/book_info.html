@@ -1,24 +1,75 @@
 {% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/book_info.css')}}">
+{% endblock %}
+
 {% block content %}
-  <article class="media content-section">
-    <img class="book-img" src="{{ url_for('static', filename='img/books/' + book.image_file) }}">
-    <div class="media-body">
-      <div class="article-metadata">
-        <h2 class="book-title">{{ book.title }}</h2>
-        <h3><small class="text-muted">{{ book.author }}</small></h3>
-      </div>
-	  <h5 class="article-content">&#8377;{{ book.price }}</h5>
-	  <h6 class="article-content">About Book : </h6>
-      <p class="article-content">{{ book.description }}</h2>
-	  <h6 class="article-content">Genre: {{ book.genre }}</h6>
-      <h6 class="article-content">Publication Year: {{ book.publishing_year }}</h6>
-	  {% if book.nocopies==0: %}
-		<h2 class="book-title">Out Of Stock</h2>
-	  {% else: %}
-		<div>
-			<a class="btn btn-success btn-sm mt-1 mb-1" >Buy now</a>
+<div id="opt">
+	<dl>
+		<!-- <dt>Console</dt> -->
+		<dd id="view-cover" class="cur">View Cover</dd>
+		<dd id="view-back">View Back</dd>
+		<dd id="open-book">Open/Close book</dd>
+		<dd id="view-rotate">360° Showcase</dd>
+	</dl>
+</div>
+
+<div class="container-fluid" style="display: flex;">
+	<div class="com"></div>
+	<div id="book" class="view-cover">
+		<div class="main">
+			<div class="book-font">
+				<div class="book-cover">
+					<img class="book-img" style="width: 100%; height: 100%; padding-left: 15px;"
+						src="{{ url_for('static', filename='img/books/' + book.image_file) }}">
+				</div>
+				<div class="book-cover-back"></div>
+			</div>
+			<div class="book-page">
+				<div id="page-1" class="page">
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto expedita nulla incidunt
+						voluptatibus amet consectetur facere, corrupti repellat, recusandae nisi et quasi nemo labore
+						tempora ex error laboriosam nostrum vel?</p>
+				</div>
+				<div class="page-number">- 1 -</div>
+			</div>
+			<div class="book-back">
+				<div class="description">
+					<!-- <p>{{ book.description }}</p> -->
+					<p class="txt-right">Publication Year: {{ book.publishing_year }}</p>
+				</div>
+			</div>
+			<div class="book-bone">
+				<h2>{{ book.author }}</h2>
+			</div>
+			<div class="book-top"></div>
+			<div class="book-right"></div>
+			<div class="book-bottom"></div>
 		</div>
-	  {% endif %}
-    </div>
-  </article>
+	</div>
+
+	<article class="media content-section" style="padding: 8% 10% 0 5%;">
+		<!-- <img class="book-img" src="{{ url_for('static', filename='img/books/' + book.image_file) }}"> -->
+		<div class="media-body">
+			<div class="article-metadata">
+				<h2 class="book-title">{{ book.title }}</h2>
+				<h3><small class="text-muted">by {{ book.author }}</small></h3>
+			</div>
+			<h5 class="article-content">Price: &#8377;{{ book.price }}</h5>
+			<p class="article-content" style="line-height: 1.5;">Description : <br> {{ book.description }}</h2>
+				<!-- <h6 class="article-content">Genre: {{ book.genre }}</h6> -->
+			<h6 class="article-content">Publication Year: {{ book.publishing_year }}</h6>
+			{% if book.nocopies==0: %}
+			<h2 class="book-title">Out Of Stock</h2>
+			{% else: %}
+			<div>
+				<a class="btn btn-dark">Buy now</a>
+			</div>
+			{% endif %}
+		</div>
+	</article>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="../static/js/book.js"></script>
 {% endblock content %}

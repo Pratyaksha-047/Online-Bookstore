@@ -1,0 +1,62 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/* .msg{
+    display: none;
+} */
+.form-group{
+    margin: 0;
+}
+.form-control{
+    padding: 10px;
+    outline: none;
+}
+.form-control-label{
+    transform: translate(20px, 20px);
+    background-color: white;
+    padding: 0 20px;
+    font-size: 18px;
+    color: gray;
+}
+.login-btn{
+    width: 100%;
+    padding: 15px;
+    background-color: #af7352;
+    color: white;
+    outline: none;
+    border: none;
+    margin: 15px 0;
+    border-radius: 10px;
+}
+.login-btn:hover{
+    background-color: #70442d;
+    outline: none;
+}
+.form-check-label{
+    color: gray;
+    font-size: 15px;
+}
+input[type=checkbox], input[type=radio] {
+    /* box-sizing: border-box; */
+    padding: 0;
+}
+.form-check-input{
+    position: absolute;
+    top: 0;
+    /* margin: 10px; */
+    /* left: 0; */
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+}
+.forgot_pass{
+    text-decoration: none;
+    color: gray;
+}
+.forgot_pass:hover{
+    text-decoration: none;
+    color: #70442d;
+    font-weight: 600;
+}
