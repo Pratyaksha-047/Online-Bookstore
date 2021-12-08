@@ -8,6 +8,10 @@
 ![Website Image](main/static/img/all.png?raw=true "Title")
 ### Individual Book Page 
 ![Website Image](main/static/img/book_page.png?raw=true "Title")
+### Offers
+![Website Image](main/static/img/offers.png?raw=true "Title")
+### Sales
+![Website Image](main/static/img/sale.png?raw=true "Title")
 ### Contact Us Page 
 ![Website Image](main/static/img/contact_page.png?raw=true "Title")
 ### Register Page 
@@ -21,8 +25,4 @@
 ### Book Details in admin dashboard 
 ![Website Image](main/static/img/book.png?raw=true "Title")
 ### Account Page
-![Website Image](main/static/img/book.png?raw=true "Title")
-### Offers
-![Website Image](main/static/img/offers.png?raw=true "Title")
-### Sales
-![Website Image](main/static/img/sale.png?raw=true "Title")
+![Website Image](main/static/img/account.png?raw=true "Title")
