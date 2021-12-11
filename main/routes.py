@@ -10,6 +10,7 @@ from flask_mail import Message
 from flask_admin.contrib.sqla import ModelView
 from main.decorators import admin_required
 from main import db, bcrypt,mail, admin
+import razorpay
 
 @app.route("/")
 @app.route("/home")
@@ -144,7 +145,7 @@ def save_picture(form_picture):
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static\\img\\books', picture_fn)
 
-    output_size = (125, 125)
+    output_size = (500, 500)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)
@@ -157,6 +158,10 @@ def book():
     return render_template('book.html', books=books)
 
 @app.route("/book_info/<int:book_id>")
+@login_required
 def book_info(book_id):
     book = Book.query.get_or_404(book_id)
-    return render_template('book_info.html', title=book.title, book=book)
+    client = razorpay.Client(auth=("rzp_test_OPH3Y9PSTTXz6z","n19uDbf0UQdIuBFILCrVKyiC"))
+    payment = client.order.create({'amount': book.price*100 , 'currency' : "INR" , "payment_capture": '1'})
+    
+    return render_template('book_info.html', title=book.title, book=book , payment=payment)

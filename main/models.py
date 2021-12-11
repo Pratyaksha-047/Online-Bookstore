@@ -1,4 +1,5 @@
 from enum import unique
+from datetime import date
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import backref
 from main import db, login_manager
@@ -17,6 +18,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
     is_admin = db.Column(db.Boolean , default= False)
+    order = db.relationship('Orders',backref='user',lazy=True)
     
     def __repr__(self):
         return f"User('{self.name}', '{self.email}')"
@@ -32,7 +34,18 @@ class Book(db.Model):
     nocopies= db.Column(db.Integer)
     description = db.Column(db.String(5000))
     price = db.Column(db.Integer, nullable= False)
+    order = db.relationship('Orders',backref='books',lazy=True)
 
     def __repr__(self):
         return f"Book('{self.title}','{self.author}','{self.image_file}','{self.price}')"
     
+class Orders(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    razorpay_id = db.Column(db.Integer, primary_key = True)
+    book_id = db.Column(db.Integer,db.ForeignKey('book.id'), nullable= False)
+    user_id = db.Column(db.Integer,db.ForeignKey('user.id'), nullable= False)
+    book_price = db.Column(db.Integer, nullable= False)
+    order_date = db.Column(db.DateTime,nullable=False, default=date.today)
+
+    def __repr__(self):
+        return f"Book('{self.razorpay_id}','{self.book_id}','{self.user_id}','{self.book_price}','{self.order_date}')"
