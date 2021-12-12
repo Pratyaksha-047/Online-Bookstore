@@ -1,0 +1,62 @@
+body{
+    background-color: #f0eee8;
+}
+.bg{
+    background-image: url("https://images.pexels.com/photos/5499560/pexels-photo-5499560.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    height: 100vh; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* width: 50vw; */
+    padding-top: 10vh; 
+    /* filter: blur(5px); */
+    /* -webkit-filter: blur(8px); */
+    /* position: absolute; */
+    object-fit: cover;
+}
+.form-group{
+    display: flex;
+}
+.form-control-label{
+    width: 200px;
+    font-size: 18px;
+    font-weight: 700;
+    padding-top: 2%;
+}
+.form-control-lg{
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid black;
+    background: none;
+}
+.form-control-lg:focus{
+    outline: none;
+    border: none;
+}
+.btn{
+    background-color: #70442d;
+    border: none;
+    /* border-radius: 25px; */
+    padding: 15px 50px;
+    margin: 10px;
+    box-shadow: 2px 2px 5px #949090;
+}
+.form-control-file{
+    padding-top: 2%;
+}
+.underline-small-footer{
+    margin-bottom: 50px;
+    display:inline-block;
+    position:relative;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+.underline-small-footer::after{
+    content:'';
+    height:3px;
+    width:70%;
+    background: #af7352;
+    position:absolute;
+    right: 30%;
+    bottom:-15px;
+}
