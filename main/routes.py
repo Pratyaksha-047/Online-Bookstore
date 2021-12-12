@@ -158,10 +158,11 @@ def book():
     return render_template('book.html', books=books)
 
 @app.route("/book_info/<int:book_id>")
-@login_required
 def book_info(book_id):
     book = Book.query.get_or_404(book_id)
     client = razorpay.Client(auth=("rzp_test_OPH3Y9PSTTXz6z","n19uDbf0UQdIuBFILCrVKyiC"))
     payment = client.order.create({'amount': book.price*100 , 'currency' : "INR" , "payment_capture": '1'})
+    
+        
     
     return render_template('book_info.html', title=book.title, book=book , payment=payment)

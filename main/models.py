@@ -41,7 +41,7 @@ class Book(db.Model):
     
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    razorpay_id = db.Column(db.Integer, primary_key = True)
+    razorpay_orderid = db.Column(db.Integer, primary_key = True)
     book_id = db.Column(db.Integer,db.ForeignKey('book.id'), nullable= False)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'), nullable= False)
     book_price = db.Column(db.Integer, nullable= False)
