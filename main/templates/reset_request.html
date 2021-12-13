@@ -1,10 +1,47 @@
 {% extends "base.html" %}
+
+{% block head %}
+<style>
+    body{
+        background-color: #f0eee8;
+    }
+    .btn{
+        background-color: #70442d;
+        border: none;
+        /* border-radius: 25px; */
+        padding: 15px 50px;
+        margin: 10px;
+        box-shadow: 2px 2px 5px #949090;
+    }
+    label{
+        margin: 10px 0;
+    }
+    .underline-small-footer{
+        margin-bottom: 30px;
+        display:inline-block;
+        position:relative;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+    .underline-small-footer::after{
+        content:'';
+        height:3px;
+        width:70%;
+        background: #af7352;
+        position:absolute;
+        right: 30%;
+        bottom:-15px;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
-    <div class="content-section">
+    <div class="container col-lg-4 content-section" style="margin-top: 15%; background-color: white; padding: 30px 50px;">
+        <h1 class="underline-small-footer" style="font-size: 40px; text-align: center;">Reset Password</h1>
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Reset Password</legend>
+                <!-- <legend class="border-bottom mb-4">Reset Password</legend> -->
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }}
                     {% if form.email.errors %}
@@ -19,8 +56,8 @@
                     {% endif %}
                 </div>
             </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
+            <div class="form-group" style="text-align: center;">
+                {{ form.submit(class="btn btn-dark") }}
             </div>
         </form>
     </div>
