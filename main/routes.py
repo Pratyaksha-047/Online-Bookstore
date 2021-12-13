@@ -4,7 +4,7 @@ import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect,request
 from main.forms import RegistrationForm, LoginForm , ContactForm , UpdateAccountForm,ResetPasswordForm, Add_bookForm, RequestResetForm, ForgotPasswordForm
-from main.models import Book, User
+from main.models import Book, User, Orders
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 from flask_admin.contrib.sqla import ModelView
@@ -91,6 +91,7 @@ class myModelView(ModelView):
     
 admin.add_view(myModelView(User,db.session))
 admin.add_view(myModelView(Book,db.session))
+admin.add_view(myModelView(Orders,db.session))
 
 @app.route("/add_book", methods=['GET', 'POST'])
 @login_required
@@ -155,7 +156,7 @@ def save_picture(form_picture):
 
 @app.route("/book", methods=['GET', 'POST'])
 def book():
-    q= request.args.get('q')
+    q = request.args.get('q')
     if q:
         books = Book.query.filter(Book.title.contains(q) |
         Book.author.contains(q))
@@ -163,15 +164,19 @@ def book():
         books=Book.query.all()
     return render_template('book.html', books=books)
 
-@app.route("/book_info/<int:book_id>")
-@login_required
+@app.route("/book_info/<int:book_id>", methods=['GET', 'POST'])
 def book_info(book_id):
     book = Book.query.get_or_404(book_id)
     client = razorpay.Client(auth=("rzp_test_OPH3Y9PSTTXz6z","n19uDbf0UQdIuBFILCrVKyiC"))
     payment = client.order.create({'amount': book.price*100 , 'currency' : "INR" , "payment_capture": '1'})
-    db.session.commit()
-    
-        
+    if request.method == 'POST':
+        order_id = request.form['order_id']
+        if order_id != '':
+            book.nocopies= book.nocopies - 1
+            order = Orders(razorpay_order_id=order_id, book_id = book.id, user_id=current_user.id, book_price= book.price)
+            db.session.add(order)
+            db.session.commit()
+            return redirect(url_for('order_list'))
     return render_template('book_info.html', title=book.title, book=book , payment=payment)
 
 def send_reset_email(user):
@@ -213,3 +218,18 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
+
+@app.route("/order")
+@login_required
+def order_list():
+    orders = Orders.query.filter_by(user_id = current_user.id)
+    books=Book.query.all()
+    return render_template('order.html',orders=orders,books=books)
+
+@app.route("/terms")
+def terms():
+    return render_template('termsCondition.html')
+
+@app.route("/guide")
+def guide():
+    return render_template('guide.html')

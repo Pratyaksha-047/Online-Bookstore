@@ -25,6 +25,7 @@
                 <p class="text-secondary">Email : {{ current_user.email }}</p>
             </div>
 
+
             <!--Update Account-->
             <button class="btn btn-dark" onclick="Updateaccountfunction()">Edit account</button>
             <div id="Accountformdiv" style="display:none">
@@ -149,6 +150,22 @@
             </div>
         </div>
     </div>
+    <a href="{{ url_for('order_list') }}" class="anchor_div">
+    <div class="container col-lg-2" style="position: absolute; left: 5%; bottom: 25%; padding: 30px 20px; border: 2px solid #af7352d2; border-radius: 25px;">
+            <div class="row">
+                <div class="col-lg-3 social-icon"><i class="fas fa-history"></i></div>
+                <div class="col-lg-9"><h5 style="margin: 10px 0;">Order history</h5></div>
+            </div>
+        </div>
+    </a>
+    <a href="#" class="anchor_div">
+    <div class="container col-lg-2" style="position: absolute; left: 5%; bottom: 10%; padding: 30px 20px; border: 2px solid #af7352d2; border-radius: 25px;">
+        <div class="row">
+            <div class="col-lg-3 social-icon"><i class="fas fa-shopping-cart"></i></div>
+            <div class="col-lg-9"><h5 style="margin: 10px 0;">WishList Cart</h5></div>
+        </div>
+    </div>
+</a>
 </div>
 <script src="../static/js/account.js"></script>
 {% endblock content %}

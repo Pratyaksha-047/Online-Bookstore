@@ -23,6 +23,9 @@
     <li class="nav-item-m">
       <a class="nav-link-m" href="{{ url_for('about') }}">About Us</a>
     </li>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('book') }}">Search Book</a>
+    </li>
     {% if current_user.is_authenticated %}
     {% if current_user.is_admin == 1 %}
     <li class="nav-item-m">

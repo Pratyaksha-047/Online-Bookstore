@@ -2,14 +2,15 @@
 
 {% block head_css %}
 <link rel="icon" href="../static/img/icon2.png">
+{{ super() }}
 <link rel="stylesheet" href="{{url_for('static', filename='css/admin/user.css')}}">
 {% endblock %}
 
 {% block body %}
-<div style="position: absolute; left: 0; width: 25%; background-color: #70442d; height: 100vh; margin-top: -8px;">
+<div style="position: absolute; left: 0; width: 20%; background-color: #70442d; height: 100vh; margin-top: -4px;">
   <ul class="nav-list-m">
     <div class="con" style="display: flex;">
-      <img src="../../static/img/icon2.png" alt="" style="height: 40px; width: 40px;">
+      <img src="{{url_for('static', filename='img/icon2.png')}}" alt="" style="height: 40px; width: 40px;">
       <h3 style="margin: 1%; color: white;">Online-Bookstore</h3>
     </div>
     <li class="nav-item-m">
@@ -17,6 +18,9 @@
     </li>
     <li class="nav-item-m">
       <a class="nav-link-m" href="{{ url_for('about') }}">About Us</a>
+    </li>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('book') }}">Search Book</a>
     </li>
     {% if current_user.is_authenticated %}
     {% if current_user.is_admin == 1 %}

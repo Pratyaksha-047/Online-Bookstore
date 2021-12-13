@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+body{
+    background-color: #f0eee8;
+  }
+
+  h1, h2, h3, h4, h5, h6{
+    font-family: "raleway";
+  }
+  .underline-small-footer{
+    margin-bottom: 60px;
+    display:inline-block;
+    position:relative;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    }
+    .underline-small-footer::after{
+    content:'';
+    height:3px;
+    width:70%;
+    background: #af7352;
+    position:absolute;
+    right: 30%;
+    bottom:-15px;
+    }
+    .table{
+      text-align: center;
+    }
+    thead{
+      background-color: #70442d;
+      color: white;
+    }
+    .table td{
+      padding: 20px;
+    }
+
+    .table th{
+      padding: 20px 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="underline-small-footer" style="font-size: 50px; text-align: center; padding-top: 50px; font-weight: 700; color: #70442d; margin-left: 30%;">Order History</h1>
+  <div class="each-order container">
+        <table class="table" style="background-color: white;">
+            <thead>
+              <tr>
+                <th scope="col">Order id</th>
+                <th scope="col">Razorpay order id</th>
+                <th scope="col">Book id</th>
+                <th scope="col">Book name</th>
+                <th scope="col">Book price</th>
+                <th scope="col">Order date</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+              <tr>
+                <th scope="row">{{ order.id }}</th>
+                <td style="font-weight: bolder;">{{ order.razorpay_order_id }}</td>
+                <td>{{ order.book_id }}</td>
+                {%for book in books%}
+                {% if book.id == order.book_id  %}
+                    <td><a class="mr-2" href="{{ url_for('book_info', book_id=order.book_id)}}" style="color: #70442d;">{{ book.title}}</a></td>
+                {%endif%}
+                {%endfor%}
+                <td style="color: green;">₹ {{ order.book_price }}</td>
+                <td>{{ order.order_date}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+{% endblock %}

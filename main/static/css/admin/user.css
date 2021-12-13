@@ -79,7 +79,7 @@ body{
 }
 
 .navbar-inner .nav li{
-    margin: 15px 100px;
+    margin: 15px 60px;
 }
 
 .nav{
@@ -275,6 +275,13 @@ label{
 
 .line-chart{
     margin: 20px;
+}
+
+.alert-success {
+    position: absolute;
+    right: 5%;
+    top: 10px;
+    width: 70%;
 }
 
 @media only screen and (min-width: 320px) {*/
