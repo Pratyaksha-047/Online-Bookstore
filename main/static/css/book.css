@@ -2,11 +2,16 @@ body{
     background-color: #f0eee8;
   }
 
+  h1, h2, h3, h4, h5, h6{
+    font-family: "raleway";
+  }
+
   .posts{
     flex: 9;
     display: flex;
     flex-wrap: wrap;
     margin: 40px 0 40px 100px;
+    font-family: "raleway";
 }
 
   .each-book{
@@ -40,4 +45,14 @@ body{
     position:absolute;
     right: 30%;
     bottom:-15px;
-    } 
+    }
+
+    .btn {
+      background-color: #70442d;
+      border: none;
+      color: white;
+      /* border-radius: 25px; */
+      padding: 10px 50px;
+      margin: 30px 0;
+      box-shadow: 2px 2px 5px #949090;
+  }

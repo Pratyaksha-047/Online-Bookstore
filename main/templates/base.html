@@ -18,9 +18,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Exo:wght@200;300;400;500;600;700;800;900&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700&family=Poppins:wght@300&display=swap"
     rel="stylesheet">
-    <title>
-      Online-Bookstore
-    </title>
+  <title>
+    Online-Bookstore
+  </title>
   {% block head %} {% block title %}{% endblock %} {% endblock %}
 </head>
 
@@ -47,8 +47,11 @@
         <li class="nav-item">
           <a class="nav-link" style="color: white" href="{{ url_for('about') }}">About Us</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" href="{{ url_for('book') }}">Search Book</a>
+        </li>
         {% if current_user.is_authenticated %}
-        {% if current_user.is_admin == 1  %}
+        {% if current_user.is_admin == 1 %}
         <li class="nav-item">
           <a class="nav-link" style="color: white" href="{{ url_for('add_book') }}">Add Book</a>
         </li>
@@ -84,13 +87,7 @@
   <p class="message">{{ message | safe}}</p>
   {% endif %} {% block content %} {% endblock %}
 
-  <script>
-    const menuIcon = document.querySelector(".hamburger-menu");
-    const navbar = document.querySelector(".navbar");
-    menuIcon.addEventListener("click", () => {
-      navbar.classList.toggle("change");
-    });
-  </script>
+  <script src="../static/js/nav.js"></script>
   <script async src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>

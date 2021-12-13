@@ -15,7 +15,8 @@ import razorpay
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('index.html')
+    books = Book.query.all()
+    return render_template('index.html', books = books)
 
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():
@@ -144,7 +145,7 @@ def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
-    picture_path = os.path.join(app.root_path, 'static\\img\\books', picture_fn)
+    picture_path = os.path.join(app.root_path, 'static/img/books', picture_fn)
 
     output_size = (500, 500)
     i = Image.open(form_picture)
@@ -164,7 +165,6 @@ def book():
     return render_template('book.html', books=books)
 
 @app.route("/book_info/<int:book_id>", methods=['GET', 'POST'])
-@login_required
 def book_info(book_id):
     book = Book.query.get_or_404(book_id)
     client = razorpay.Client(auth=("rzp_test_OPH3Y9PSTTXz6z","n19uDbf0UQdIuBFILCrVKyiC"))
@@ -176,7 +176,7 @@ def book_info(book_id):
             order = Orders(razorpay_order_id=order_id, book_id = book.id, user_id=current_user.id, book_price= book.price)
             db.session.add(order)
             db.session.commit()
-            return redirect(url_for('order'))
+            return redirect(url_for('order_list'))
     return render_template('book_info.html', title=book.title, book=book , payment=payment)
 
 def send_reset_email(user):
@@ -225,3 +225,11 @@ def order_list():
     orders = Orders.query.filter_by(user_id = current_user.id)
     books=Book.query.all()
     return render_template('order.html',orders=orders,books=books)
+
+@app.route("/terms")
+def terms():
+    return render_template('termsCondition.html')
+
+@app.route("/guide")
+def guide():
+    return render_template('guide.html')

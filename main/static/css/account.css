@@ -170,6 +170,22 @@
     transform-box: fill-box;
 }
 
+.social-icon {
+    color: #70442d;
+    text-align: center;
+    font-size: 30px;
+}
+
+.anchor_div{
+    color: #70442d;
+    text-decoration: none;
+}
+
+.anchor_div:hover{
+    color: #70442d;
+    text-decoration: none;
+}
+
 @keyframes star {
     to{
         transform: rotateZ(0deg);

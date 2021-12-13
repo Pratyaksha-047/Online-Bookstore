@@ -20,8 +20,8 @@ body{
     box-shadow: none;
 }
 
-.nav{
-    display: flex;
+.navbar-inner .nav{
+    /* display: inline-flex; */
     list-style: none;
     margin-top: 80px;
     margin-left: 10%;
@@ -44,7 +44,7 @@ body{
 }
 
 .nav li{
-    margin: 10px 100px;
+    margin: 10px 30px;
 }
 
 body{

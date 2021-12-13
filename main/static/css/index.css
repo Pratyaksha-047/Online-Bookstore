@@ -968,6 +968,8 @@ z-index: 999;
 
 .box2 img {
 border-radius: 2px;
+height: 250px;
+border: 2px solid white;
 }
 
 /* LINKS */

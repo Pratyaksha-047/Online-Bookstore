@@ -1,78 +1,15 @@
 {% extends "base.html" %}
 
 {% block head %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
-<style>
-    body{
-        font-family: 'Poppins', sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-    /* .msg{
-        display: none;
-    } */
-    .form-group{
-        margin: 0;
-    }
-    .form-control{
-        padding: 10px;
-        outline: none;
-    }
-    .form-control-label{
-        transform: translate(20px, 20px);
-        background-color: white;
-        padding: 0 20px;
-        font-size: 18px;
-        color: gray;
-    }
-    .login-btn{
-        width: 100%;
-        padding: 15px;
-        background-color: #af7352;
-        color: white;
-        outline: none;
-        border: none;
-        margin: 15px 0;
-        border-radius: 10px;
-    }
-    .login-btn:hover{
-        background-color: #70442d;
-        outline: none;
-    }
-    .form-check-label{
-        color: gray;
-        font-size: 15px;
-    }
-    input[type=checkbox], input[type=radio] {
-        /* box-sizing: border-box; */
-        padding: 0;
-    }
-    .form-check-input{
-        position: absolute;
-        top: 0;
-        /* margin: 10px; */
-        /* left: 0; */
-        height: 15px;
-        width: 15px;
-        background-color: #eee;
-    }
-    .forgot_pass{
-        text-decoration: none;
-        color: gray;
-    }
-    .forgot_pass:hover{
-        text-decoration: none;
-        color: #70442d;
-        font-weight: 600;
-    }
-</style>
+<link rel="stylesheet" href="{{url_for('static', filename='css/register.css')}}">
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid" style="margin: 0; padding: 0;">
     <div class="row">
         <div class="col-lg-7">
-            <img src="https://images.pexels.com/photos/3563625/pexels-photo-3563625.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" style="height: 100vh; width: 100%;object-fit: cover;">
+            <img src="https://images.pexels.com/photos/3563625/pexels-photo-3563625.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                alt="" style="height: 100vh; width: 100%;object-fit: cover;">
         </div>
         <div class="col-lg-5">
 
@@ -80,10 +17,11 @@
                 <form method="POST" action="">
                     {{ form.hidden_tag() }}
                     <fieldset class="form-group">
-                        <legend class="mb-4" style="text-align: center; font-size: 30px;font-weight: 700;">Join Today</legend>
+                        <legend class="mb-4" style="text-align: center; font-size: 30px;font-weight: 700;">Join Today
+                        </legend>
                         <div class="form-group">
                             {{ form.name.label(class="form-control-label") }}
-                            
+
                             {% if form.name.errors %}
                             {{ form.name(class="form-control form-control-lg is-invalid") }}
                             <div class="invalid-feedback">
@@ -167,7 +105,8 @@
                 </form>
                 <div class="pt-3" style="text-align: center;">
                     <small class="text-muted">
-                        Already Have An Account? <a class="forgot_pass ml-2" href="{{ url_for('login') }}" style="color: #70442d; font-weight: 600;">Sign In</a>
+                        Already Have An Account? <a class="forgot_pass ml-2" href="{{ url_for('login') }}"
+                            style="color: #70442d; font-weight: 600;">Sign In</a>
                     </small>
                 </div>
             </div>

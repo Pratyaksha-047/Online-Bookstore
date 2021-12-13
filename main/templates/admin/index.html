@@ -3,53 +3,58 @@
 {% block head_css %}
 <link rel="icon" href="../static/img/icon2.png">
 {{ super() }}
-    <link rel="stylesheet" href="{{url_for('static', filename='css/admin/user.css')}}">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/> 
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/admin/user.css')}}">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 {% endblock %}
 
 {% block body %}
 <div style="position: fixed; left: 0; width: 20%; background-color: #70442d; height: 100vh; margin-top: -4px;">
-    <ul class="nav-list-m">
-        <div class="con" style="display: flex;">
-            <img src="../../static/img/icon2.png" alt="" style="height: 40px; width: 40px;">
-            <h3 style="margin: 1%; color: white; font-size: 22px;">Online-Bookstore</h3>
-        </div>
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('home') }}">Home</a>
-        </li>
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('about') }}">About Us</a>
-        </li>
-        {% if current_user.is_authenticated %}
-        {% if current_user.is_admin == 1  %}
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('add_book') }}">Add Book</a>
-        </li>
-        <li class="nav-item-m" style="background-color: white; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">
-          <a class="nav-link-m" style="color: #70442d; text-decoration: none;" href="{{ url_for('adminfunc') }}">Admin</a>
-        </li>
-        {%endif%}
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('contact') }}">Contact Us</a>
-        </li>
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('account') }}">Account</a>
-        </li>
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('logout') }}">Logout</a>
-        </li>
-        {% else %}
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('login') }}">Login</a>
-        </li>
-        <li class="nav-item-m">
-          <a class="nav-link-m" href="{{ url_for('register') }}">Register</a>
-        </li>
-        {% endif %}
-      </ul>
-  </div>
+  <ul class="nav-list-m">
+    <div class="con" style="display: flex;">
+      <img src="../../static/img/icon2.png" alt="" style="height: 40px; width: 40px;">
+      <h3 style="margin: 1%; color: white; font-size: 22px;">Online-Bookstore</h3>
+    </div>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('home') }}">Home</a>
+    </li>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('about') }}">About Us</a>
+    </li>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('book') }}">Search Book</a>
+    </li>
+    {% if current_user.is_authenticated %}
+    {% if current_user.is_admin == 1 %}
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('add_book') }}">Add Book</a>
+    </li>
+    <li class="nav-item-m"
+      style="background-color: white; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">
+      <a class="nav-link-m" style="color: #70442d; text-decoration: none;" href="{{ url_for('adminfunc') }}">Admin</a>
+    </li>
+    {%endif%}
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('contact') }}">Contact Us</a>
+    </li>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('account') }}">Account</a>
+    </li>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('logout') }}">Logout</a>
+    </li>
+    {% else %}
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('login') }}">Login</a>
+    </li>
+    <li class="nav-item-m">
+      <a class="nav-link-m" href="{{ url_for('register') }}">Register</a>
+    </li>
+    {% endif %}
+  </ul>
+</div>
 </div>
 <div class="con" style=" padding-top: 12%; padding-left: 25%;">
   <div class="row" style="display: flex;width: fit-content; margin: 30px 0;">
@@ -57,8 +62,8 @@
       <div class="row">
         <div class="col-lg-6">
           <h4 class="feature-heading">Revenue <i class="fas fa-arrow-up"></i></h4>
-        <h1>$5,210</h1>
-        <p>Lorem ipsum dolor sit amet.</p>
+          <h1>$5,210</h1>
+          <p>Lorem ipsum dolor sit amet.</p>
         </div>
       </div>
     </div>
@@ -66,8 +71,8 @@
       <div class="row">
         <div class="col-lg-6">
           <h4 class="feature-heading">Sales <i class="fas fa-arrow-up"></i></h4>
-        <h1>$1,330</h1>
-        <p>Lorem ipsum dolor sit amet.</p>
+          <h1>$1,330</h1>
+          <p>Lorem ipsum dolor sit amet.</p>
         </div>
       </div>
     </div>
@@ -75,77 +80,24 @@
       <div class="row">
         <div class="col-lg-6">
           <h4 class="feature-heading">Cost <i class="fas fa-arrow-down"></i></h4>
-        <h1>$2,120</h1>
-        <p>Lorem ipsum dolor sit amet.</p>
+          <h1>$2,120</h1>
+          <p>Lorem ipsum dolor sit amet.</p>
         </div>
       </div>
     </div>
   </div>
   <div style="height: 300px; width: 550px; display: flex;">
-    <canvas id="myChart" style="background-color: white; padding: 20px; margin: 20px 5px; border-radius: 10px; "></canvas>
-  <div class="card-6">
-    <div class="line-chart-container">
+    <canvas id="myChart"
+      style="background-color: white; padding: 20px; margin: 20px 5px; border-radius: 10px; "></canvas>
+    <div class="card-6">
+      <div class="line-chart-container">
         <canvas class="line-chart" id="line">
         </canvas>
+      </div>
     </div>
-</div>
-</div>
+  </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  const labels = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-];
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'Overall online timing',
-    backgroundColor: '#70442d',
-    borderColor: '#70442d',
-    data: [0, 10, 5, 2, 20, 30, 45],
-  }]
-};
-const config = {
-  type: 'line',
-  data: data,
-  options: {}
-};
-
-  const myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-  );
-</script>
-<script>
-  var line = document.getElementById('line');
-// line.height = 100
-var lineConfig = new Chart(line, {
-    type: 'line',
-    data: {
-        labels: ['January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',],
-        datasets: [{
-            label: 'No of books sold', // Name the series
-            data: [10, 15, 20, 10, 25, 45], // Specify the data values array
-            fill: false,
-            borderColor: '#70442d', // Add custom color border (Line)
-            backgroundColor: '#70442d', // Add custom color background (Points and Fill)
-            borderWidth: 2 // Specify bar border width
-        }]
-    },
-    options: {
-        responsive: true, // Instruct chart js to respond nicely.
-        maintainAspectRatio: true, // Add to prevent default behaviour of full-width/height 
-    }
-})
-</script>
+<script src="../../static/js/chart1.js"></script>
+<script src="../../static/js/chart2.js"></script>
 {% endblock %}
