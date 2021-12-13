@@ -10,11 +10,13 @@ from flask_mail import Message
 from flask_admin.contrib.sqla import ModelView
 from main.decorators import admin_required
 from main import db, bcrypt,mail, admin
+import razorpay
 
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('index.html')
+    books = Book.query.all()
+    return render_template('index.html', books = books)
 
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():
@@ -142,9 +144,9 @@ def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
-    picture_path = os.path.join(app.root_path, 'static\\img\\books', picture_fn)
+    picture_path = os.path.join(app.root_path, 'static/img/books', picture_fn)
 
-    output_size = (125, 125)
+    output_size = (500, 500)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)
@@ -153,10 +155,21 @@ def save_picture(form_picture):
 
 @app.route("/book", methods=['GET', 'POST'])
 def book():
-    books=Book.query.all()
+    q= request.args.get('q')
+    if q:
+        books = Book.query.filter(Book.title.contains(q) |
+        Book.author.contains(q))
+    else:
+        books=Book.query.all()
     return render_template('book.html', books=books)
 
 @app.route("/book_info/<int:book_id>")
+@login_required
 def book_info(book_id):
     book = Book.query.get_or_404(book_id)
-    return render_template('book_info.html', title=book.title, book=book)
+    client = razorpay.Client(auth=("rzp_test_OPH3Y9PSTTXz6z","n19uDbf0UQdIuBFILCrVKyiC"))
+    payment = client.order.create({'amount': book.price*100 , 'currency' : "INR" , "payment_capture": '1'})
+    db.session.commit()
+    
+        
+    return render_template('book_info.html', title=book.title, book=book , payment=payment)

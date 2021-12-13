@@ -31,6 +31,7 @@
     <div class="alert alert-{{ category }}">{{ message }}</div>
     {% endfor %} {% endif %} {% endwith %}
   </div>
+  
   <div class="container">
     <div class="navbar">
       <div class="hamburger-menu">
@@ -38,12 +39,16 @@
         <div class="line line-2"></div>
         <div class="line line-3"></div>
       </div>
+      
       <ul class="nav-list">
         <li class="nav-item">
           <a class="nav-link" style="color: white" href="{{ url_for('home') }}">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" style="color: white" href="{{ url_for('about') }}">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: white" href="{{ url_for('book') }}">Search Book</a>
         </li>
         {% if current_user.is_authenticated %}
         {% if current_user.is_admin == 1 %}

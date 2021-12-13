@@ -41,3 +41,13 @@ body{
     right: 30%;
     bottom:-15px;
     }
+
+    .btn {
+      background-color: #70442d;
+      border: none;
+      color: white;
+      /* border-radius: 25px; */
+      padding: 10px 50px;
+      margin: 30px 0;
+      box-shadow: 2px 2px 5px #949090;
+  }

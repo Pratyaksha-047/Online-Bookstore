@@ -9,14 +9,19 @@
   style="font-size: 50px; text-align: center; padding-top: 50px; font-weight: 700; color: #70442d; margin-left: 30%;">
   Available Books</h1>
 <div class="container posts">
+  <form class="form-inline my-2 my-lg-0" method="GET" style="margin: 30px; margin-left: 25%;">
+    <input class = "form-control mr-sm-2"
+    type="search" placeholder="Search" name="q" style="width: 400px; padding: 10px 30px;">
+    <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+  </form>
   {% for book in books %}
   <div class="each-book">
     <article class="media content-section">
-      <img class="fa-square-full article-img" src="{{ url_for('static', filename='img/books/' + book.image_file) }}">
+      <img style="height: 150px;" class="fa-square-full article-img" src="{{ url_for('static', filename='img/books/' + book.image_file) }}">
       <div class="media-body">
         <div class="article-metadata">
-          <a class="mr-2" href="{{ url_for('book_info', book_id=book.id)}}" style="font-size: 20px; color: #70442d; font-weight: 600;">{{ book.title }}</a></br>
-          <small class="text-muted">{{ book.author }}</small>
+          <a class="mr-2" href="{{ url_for('book_info', book_id=book.id)}}" style="font-size: 25px; color: #70442d; font-weight: 600;">{{ book.title }}</a></br>
+          <small class="text-muted" style="font-size: 15px;">{{ book.author }}</small>
         </div>
         <p class="article-content">&#8377;{{ book.price }}</p>
         <p class="postDesc">{{ book.description }}</p>

@@ -31,6 +31,7 @@ flask-session = "*"
 phonenumbers = "==8.11.0"
 bcrypt-flask = "*"
 flask-admin = "*"
+razorpay = "*"
 
 [dev-packages]
 
