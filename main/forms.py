@@ -119,3 +119,6 @@ class ForgotPasswordForm(FlaskForm):
     confirm_password = PasswordField('Confirm New Password',
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset password')
+
+
+

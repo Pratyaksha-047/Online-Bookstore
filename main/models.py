@@ -55,11 +55,14 @@ class Book(db.Model):
     
 class Orders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    razorpay_orderid = db.Column(db.Integer, primary_key = True)
+    razorpay_order_id = db.Column(db.String(100), unique=True,nullable=False)
     book_id = db.Column(db.Integer,db.ForeignKey('book.id'), nullable= False)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'), nullable= False)
     book_price = db.Column(db.Integer, nullable= False)
     order_date = db.Column(db.DateTime,nullable=False, default=date.today)
 
     def __repr__(self):
-        return f"Book('{self.razorpay_id}','{self.book_id}','{self.user_id}','{self.book_price}','{self.order_date}')"
+        return f"Order('{self.razorpay_id}','{self.book_id}','{self.user_id}','{self.book_price}','{self.order_date}')"
+    
+    
+#user1=User(name="admin", phone="+919999999", address="abc",email="admin@gmail.com",password='$2b$12$7d6q6gSlpek36tmXerjKQeHouJ9J2yOLDt5ESMhnMytJVaWTIdm2e',is_admin=True)

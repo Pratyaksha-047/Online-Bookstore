@@ -12,6 +12,20 @@
       <p class="article-content">{{ book.description }}</h2>
 	  <h6 class="article-content">Genre: {{ book.genre }}</h6>
       <h6 class="article-content">Publication Year: {{ book.publishing_year }}</h6>
+
+            <!--<div class="form-group">
+              <input type="text" name="Payment" id="adcode"/>
+            </div>-->
+            <form action="{{ url_for('book_info', book_id=book.id)}}" method="POST" class="order-form">
+              <div class="form-group">
+                  <!-- <label for="name">Name:</label> -->
+                  <input class="order-input" type="text" name="order_id" id="adcode" />
+              </div>
+              <center>
+                  <input type="submit" value="Submit" class="btn btn-dark" method='post'>
+              </center>
+          </form>
+            
 	  {% if book.nocopies==0: %}
 		<h2 class="book-title">Out Of Stock</h2>
 	  {% else: %}
@@ -31,11 +45,7 @@
             "image": "https://example.com/your_logo",
             "order_id": "{{payment['id']}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "handler": function (response){
-              alert(response.razorpay_payment_id);
-              alert(response.razorpay_order_id);
-              alert(response.razorpay_signature)
-              book.nocopies= book.nocopies - 1
-
+              document.getElementById('adcode').value = response.razorpay_order_id;
             },
             "prefill": {
             "name": "{{current_user.name}}",
