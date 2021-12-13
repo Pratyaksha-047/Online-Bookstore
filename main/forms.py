@@ -103,3 +103,19 @@ class Add_bookForm(FlaskForm):
         avail_genre=['fiction','fantasy','adventure','comic','mystery','thriller','horror','classics','romance','autobiographies']
         if (genre.data).lower() not in avail_genre:
             raise ValidationError('Given genre is not available')
+        
+class RequestResetForm(FlaskForm):
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('There is no account with that email. You must register first.')
+        
+class ForgotPasswordForm(FlaskForm):
+    password = PasswordField('New Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm New Password',
+                                     validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset password')
