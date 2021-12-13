@@ -1,36 +1,147 @@
 {% extends "base.html" %}
-{% block content %}
-  <article class="media content-section">
-    <img class="book-img" src="{{ url_for('static', filename='img/books/' + book.image_file) }}">
-    <div class="media-body">
-      <div class="article-metadata">
-        <h2 class="book-title">{{ book.title }}</h2>
-        <h3><small class="text-muted">{{ book.author }}</small></h3>
-      </div>
-	  <h5 class="article-content">&#8377;{{ book.price }}</h5>
-	  <h6 class="article-content">About Book : </h6>
-      <p class="article-content">{{ book.description }}</h2>
-	  <h6 class="article-content">Genre: {{ book.genre }}</h6>
-      <h6 class="article-content">Publication Year: {{ book.publishing_year }}</h6>
 
-            <!--<div class="form-group">
-              <input type="text" name="Payment" id="adcode"/>
-            </div>-->
-            <form action="{{ url_for('book_info', book_id=book.id)}}" method="POST" class="order-form">
-              <div class="form-group">
-                  <!-- <label for="name">Name:</label> -->
-                  <input class="order-input" type="text" name="order_id" id="adcode" />
-              </div>
-              <center>
-                  <input type="submit" value="Submit" class="btn btn-dark" method='post'>
-              </center>
-          </form>
-            
-	  {% if book.nocopies==0: %}
-		<h2 class="book-title">Out Of Stock</h2>
-	  {% else: %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/book_info.css')}}">
+{% endblock %}
+
+{% block content %}
+<div id="opt">
+	<dl>
+		<!-- <dt>Console</dt> -->
+		<dd id="view-cover" class="cur">View Cover</dd>
+		<dd id="view-back">View Back</dd>
+		<dd id="open-book">Open/Close book</dd>
+		<dd id="view-rotate">360° Showcase</dd>
+	</dl>
+</div>
+
+<div class="container-fluid" style="display: flex;">
+	<div class="com"></div>
+	<div id="book" class="view-cover">
+		<div class="main">
+			<div class="book-font">
+				<div class="book-cover">
+					<img class="book-img" style="width: 100%; height: 100%; padding-left: 15px;"
+						src="{{ url_for('static', filename='img/books/' + book.image_file) }}">
+				</div>
+				<div class="book-cover-back"></div>
+			</div>
+			<div class="book-page">
+				<div id="page-1" class="page">
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto expedita nulla incidunt
+						voluptatibus amet consectetur facere, corrupti repellat, recusandae nisi et quasi nemo labore
+						tempora ex error laboriosam nostrum vel?</p>
+				</div>
+				<div class="page-number">- 1 -</div>
+			</div>
+			<div class="book-back">
+				<div class="description">
+					<!-- <p>{{ book.description }}</p> -->
+					<p class="txt-right">Publication Year: {{ book.publishing_year }}</p>
+				</div>
+			</div>
+			<div class="book-bone">
+				<h2>{{ book.author }}</h2>
+			</div>
+			<div class="book-top"></div>
+			<div class="book-right"></div>
+			<div class="book-bottom"></div>
+</div>
+</div>
+
+
+		<article class="content-section" style="padding: 8% 50px 0 50px;">
+			<!-- <img class="book-img" src="{{ url_for('static', filename='img/books/' + book.image_file) }}"> -->
+			<div class="media-body">
+			  <div class="article-metadata">
+				<h2 class="book-title">{{ book.title }}</h2>
+				<h3><small class="text-muted">{{ book.author }}</small></h3>
+			  </div>
+			  <h5 class="article-content">&#8377;{{ book.price }}</h5>
+			  <h6 class="article-content">About Book : </h6>
+			  <p class="article-content">{{ book.description }}</h2>
+			  <h6 class="article-content">Genre: {{ book.genre }}</h6>
+			  <h6 class="article-content">Publication Year: {{ book.publishing_year }}</h6>
+			  <form action="{{ url_for('book_info', book_id=book.id)}}" method="POST" class="order-form">
+				<div class="form-group">
+					<!-- <label for="name">Name:</label> -->
+					<input class="order-input" type="text" name="order_id" id="adcode" />
+				</div>
+				<center>
+					<input type="submit" value="Submit" class="btn btn-dark" method='post'>
+				</center>
+			</form>
+			  {% if book.nocopies==0: %}
+				<h2 class="book-title">Out Of Stock</h2>
+			  {% else: %}
+				<div>
+					<!--<a class="btn btn-success btn-sm mt-1 mb-1" >Buy now</a>-->
+			  <div>
+		
+				  <button id="rzp-button1" class="btn btn-dark">Pay</button>
+				  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+				  <script>
+					var options = {
+					"key": "rzp_test_OPH3Y9PSTTXz6z", // Enter the Key ID generated from the Dashboard
+					"amount": "{{payment['amount']}}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+					"currency": "INR",
+					"name": "Online Bookstore",
+					"description": "Test Transaction",
+					"image": "{{url_for('static', filename='img/icon2.png')}}",
+					"order_id": "{{payment['id']}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+					"handler": function (response){
+						document.getElementById('adcode').value = response.razorpay_order_id;
+					  },
+					"prefill": {
+					"name": "{{current_user.name}}",
+					"email": "{{current_user.email}}",
+					"contact": "{{current_user.phone}}"
+					},
+		
+				  "theme": {
+					"color": "#C19A6B"
+				  }
+				};
+				var rzp1 = new Razorpay(options);
+				rzp1.on('payment.failed', function (response){
+				alert(response.error.code);
+				alert(response.error.description);
+				alert(response.error.source);
+				alert(response.error.step);
+				alert(response.error.reason);
+				alert(response.error.metadata.order_id);
+				alert(response.error.metadata.payment_id);
+				});
+				document.getElementById('rzp-button1').onclick = function(e){
+				rzp1.open();
+				e.preventDefault();
+			  }
+			</script>
+		  
+		
+		  </div>
+				</div>
+			  {% endif %}
+			</div>
+		  </article>
+		</div>
+
+	<!-- <article class="media content-section" style="padding: 8% 10% 0 5%;">
+		<img class="book-img" src="{{ url_for('static', filename='img/books/' + book.image_file) }}">
+		<div class="media-body">
+			<div class="article-metadata">
+				<h2 class="book-title">{{ book.title }}</h2>
+				<h3><small class="text-muted">by {{ book.author }}</small></h3>
+			</div>
+			<h5 class="article-content">Price: &#8377;{{ book.price }}</h5>
+			<p class="article-content" style="line-height: 1.5;">Description : <br> {{ book.description }}</h2>
+				<h6 class="article-content">Genre: {{ book.genre }}</h6>
+			<h6 class="article-content">Publication Year: {{ book.publishing_year }}</h6>
+			{% if book.nocopies==0: %}
+			<h2 class="book-title">Out Of Stock</h2>
+	  		{% else: %}
 		<div>
-			<!--<a class="btn btn-success btn-sm mt-1 mb-1" >Buy now</a>-->
+			<a class="btn btn-success btn-sm mt-1 mb-1" >Buy now</a>
       <div class="container text-center p-5">
 
           <button id="rzp-button1">Pay</button>
@@ -45,7 +156,11 @@
             "image": "https://example.com/your_logo",
             "order_id": "{{payment['id']}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             "handler": function (response){
-              document.getElementById('adcode').value = response.razorpay_order_id;
+              alert(response.razorpay_payment_id);
+              alert(response.razorpay_order_id);
+              alert(response.razorpay_signature)
+              book.nocopies= book.nocopies - 1
+
             },
             "prefill": {
             "name": "{{current_user.name}}",
@@ -76,7 +191,13 @@
 
   </div>
 		</div>
-	  {% endif %}
-    </div>
-  </article>
+			<div>
+				<a class="btn btn-dark">Buy now</a>
+			</div>
+			{% endif %}
+		</div>
+	</article>
+</div> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="../static/js/book.js"></script>
 {% endblock content %}
