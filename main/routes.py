@@ -11,6 +11,7 @@ from flask_admin.contrib.sqla import ModelView
 from main.decorators import admin_required
 from main import db, bcrypt,mail, admin
 import razorpay
+from datetime import date
 
 @app.route("/")
 @app.route("/home")
@@ -169,6 +170,7 @@ def book_info(book_id):
     book = Book.query.get_or_404(book_id)
     client = razorpay.Client(auth=("rzp_test_OPH3Y9PSTTXz6z","n19uDbf0UQdIuBFILCrVKyiC"))
     payment = client.order.create({'amount': book.price*100 , 'currency' : "INR" , "payment_capture": '1'})
+    date_today= date.today
     if request.method == 'POST':
         order_id = request.form['order_id']
         if order_id != '':
@@ -176,6 +178,19 @@ def book_info(book_id):
             order = Orders(razorpay_order_id=order_id, book_id = book.id, user_id=current_user.id, book_price= book.price)
             db.session.add(order)
             db.session.commit()
+            msg = msg = Message('Payment Receipt',
+                  sender='noreply@demo.com',
+                  recipients=[current_user.email])
+
+            msg.body = '''Hey user,
+            The payment reciept From Online Bookstore:
+                  
+            Razorpay order id: %s
+            Book name: %s
+            Book price: %s
+            Order date: %s
+            '''%(order_id,book.title,book.price,date_today)
+            mail.send(msg)
             return redirect(url_for('order_list'))
     return render_template('book_info.html', title=book.title, book=book , payment=payment)
 
