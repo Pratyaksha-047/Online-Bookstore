@@ -188,10 +188,12 @@
 
     <div class="home-more-stuff">
       <div class="more-stuff-grid">
+        {% for book in books %}
+          {% if book.image_file == '8aadb7d6e8be0e00.jpg' %}
         <div class="book-container slide-in from-left">
-          <a href="#" class="book">
+          <a href="{{ url_for('book_info', book_id=book.id)}}" class="book">
             <div class="cover"
-              style="background-image: url(https://images-na.ssl-images-amazon.com/images/I/51FZCdcN2HL._SX328_BO1,204,203,200_.jpg); object-fit: contain;"
+              style="background-image: url('../static/img/books/8aadb7d6e8be0e00.jpg'); object-fit: contain;"
               data-icon='https://res.cloudinary.com/hilnmyskv/image/upload/v1610468721/ui-library/icons/answers-for-support.svg'
               data-pattern='https://res.cloudinary.com/hilnmyskv/image/upload/v1617363328/ui-library/patterns/bckg-pattern-mapping.svg'
               data-title="Answer for support">
@@ -199,31 +201,31 @@
           </a>
         </div>
         <div class="slide-in from-right" style="text-align: center; letter-spacing: 3px; line-height: 1.8;">
-          <h1>Book Title</h1>
-          <h4>Author Of The Book</h4>
+          <h1>{{ book.title }}</h1>
+          <h4>{{ book.author }}</h4>
           <h6>Copies Sold: 290</h6>
-          <p style="text-align: justify;">Book desc - Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Accusamus voluptatem dolor natus repellat, minus temporibus provident ullam a illo, possimus dolorum
-            doloribus tempore facere aliquid?</p>
+          <p style="text-align: justify; height: 300px; overflow: hidden;">{{ book.description }}</p>
           <p>Rating: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
               class="fas fa-star"></i><i class="fas fa-star"></i></p>
         </div>
+          {% endif %}
+        {% endfor %}
       </div>
       <div class="more-stuff-grid">
+        {% for book in books %}
+          {% if book.image_file == '659645714c383ae1.jpg' %}
         <div class="slide-in from-left" style="text-align: center; letter-spacing: 3px; line-height: 1.8;">
-          <h1>Book Title</h1>
-          <h4>Author Of The Book</h4>
+          <h1>{{ book.title }}</h1>
+          <h4>{{ book.author }}</h4>
           <h6>Copies Sold: 290</h6>
-          <p style="text-align: justify;">Book desc - Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Accusamus voluptatem dolor natus repellat, minus temporibus provident ullam a illo, possimus dolorum
-            doloribus tempore facere aliquid?</p>
+          <p style="text-align: justify;height: 300px; overflow: hidden;">{{ book.description }}</p>
           <p>Rating: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
               class="fas fa-star"></i><i class="fas fa-star"></i></p>
         </div>
         <div class="book-container flipped slide-in from-right">
-          <a href="#" class="book">
+          <a href="{{ url_for('book_info', book_id=book.id)}}" class="book">
             <div
-              style="transform: scaleX(-1); background-image: url(https://images-na.ssl-images-amazon.com/images/I/41EmGYdoPOL._SX308_BO1,204,203,200_.jpg);"
+              style="transform: scaleX(-1); background-image: url(../static/img/books/659645714c383ae1.jpg);"
               class="cover"
               data-icon='https://res.cloudinary.com/hilnmyskv/image/upload/v1584605615/ui-library/icons/personalization.svg'
               data-pattern='https://res.cloudinary.com/hilnmyskv/image/upload/v1617363326/ui-library/patterns/bckg-pattern-atom.svg'
@@ -231,12 +233,16 @@
             </div>
           </a>
         </div>
+        {% endif %}
+        {% endfor %}
       </div>
       <div class="more-stuff-grid">
+        {% for book in books %}
+          {% if book.title == 'The Hobbit' %}
         <div class="book-container slide-in from-left">
-          <a href="#" class="book">
+          <a href="{{ url_for('book_info', book_id=book.id)}}" class="book">
             <div class="cover"
-              style="background-image: url(https://images-na.ssl-images-amazon.com/images/I/41g-Zs8nzlL._SX319_BO1,204,203,200_.jpg);"
+              style="background-image: url(../static/img/books/95069a905b9cc732.jpg);"
               data-icon='https://res.cloudinary.com/hilnmyskv/image/upload/v1602492921/ui-library/icons/answers.svg'
               data-pattern='https://res.cloudinary.com/hilnmyskv/image/upload/v1617363326/ui-library/patterns/bckg-pattern-incremental.svg'
               data-title="Dynamic synonyms suggestion">
@@ -244,31 +250,31 @@
           </a>
         </div>
         <div class="slide-in from-right" style="text-align: center; letter-spacing: 3px; line-height: 1.8;">
-          <h1>Book Title</h1>
-          <h4>Author Of The Book</h4>
+          <h1>{{ book.title }}</h1>
+          <h4>{{ book.author }}</h4>
           <h6>Copies Sold: 290</h6>
-          <p style="text-align: justify;">Book desc - Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Accusamus voluptatem dolor natus repellat, minus temporibus provident ullam a illo, possimus dolorum
-            doloribus tempore facere aliquid?</p>
+          <p style="text-align: justify;height: 300px; overflow: hidden;">{{ book.description }}</p>
           <p>Rating: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
               class="fas fa-star"></i><i class="fas fa-star"></i></p>
         </div>
+        {% endif %}
+        {% endfor %}
       </div>
       <div class="more-stuff-grid">
+        {% for book in books %}
+          {% if book.title == "Harry Potter and the Sorcerer's Stone" %}
         <div class="slide-in from-left" style="text-align: center; letter-spacing: 3px; line-height: 1.8;">
-          <h1>Book Title</h1>
-          <h4>Author Of The Book</h4>
+          <h1>{{ book.title }}</h1>
+          <h4>{{ book.author }}</h4>
           <h6>Copies Sold: 290</h6>
-          <p style="text-align: justify;">Book desc - Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Accusamus voluptatem dolor natus repellat, minus temporibus provident ullam a illo, possimus dolorum
-            doloribus tempore facere aliquid?</p>
+          <p style="text-align: justify;height: 300px; overflow: hidden;">{{ book.description }}</p>
           <p>Rating: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
               class="fas fa-star"></i><i class="fas fa-star"></i></p>
         </div>
         <div class="book-container flipped slide-in from-right">
-          <a href="#" class="book">
+          <a href="{{ url_for('book_info', book_id=book.id)}}" class="book">
             <div
-              style="transform: scaleX(-1); background-image: url(https://images-na.ssl-images-amazon.com/images/I/51P1Rfz5n3L._SX331_BO1,204,203,200_.jpg);"
+              style="transform: scaleX(-1); background-image: url(../static/img/books/943958d0972f529a.jpg);"
               class="cover"
               data-icon='https://res.cloudinary.com/hilnmyskv/image/upload/v1610468721/ui-library/icons/answers-for-support.svg'
               data-pattern='https://res.cloudinary.com/hilnmyskv/image/upload/v1617363328/ui-library/patterns/bckg-pattern-mapping.svg'
@@ -276,12 +282,16 @@
             </div>
           </a>
         </div>
+        {% endif %}
+        {% endfor %}
       </div>
       <div class="more-stuff-grid">
+        {% for book in books %}
+          {% if book.image_file == '954b15ec13071ff0.jpg' %}
         <div class="book-container slide-in from-left">
-          <a href="#" class="book">
+          <a href="{{ url_for('book_info', book_id=book.id)}}" class="book">
             <div class="cover"
-              style="background-image: url(https://images-na.ssl-images-amazon.com/images/I/51+kE0KESsL._SX326_BO1,204,203,200_.jpg);"
+              style="background-image: url(../static/img/books/954b15ec13071ff0.jpg);"
               data-icon='https://res.cloudinary.com/hilnmyskv/image/upload/v1584605615/ui-library/icons/personalization.svg'
               data-pattern='https://res.cloudinary.com/hilnmyskv/image/upload/v1617363326/ui-library/patterns/bckg-pattern-atom.svg'
               data-title="Answer for publishers">
@@ -289,15 +299,15 @@
           </a>
         </div>
         <div class="slide-in from-right" style="text-align: center; letter-spacing: 3px; line-height: 1.8;">
-          <h1>Book Title</h1>
-          <h4>Author Of The Book</h4>
+          <h1>{{ book.title }}</h1>
+          <h4>{{ book.author }}</h4>
           <h6>Copies Sold: 290</h6>
-          <p style="text-align: justify;">Book desc - Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Accusamus voluptatem dolor natus repellat, minus temporibus provident ullam a illo, possimus dolorum
-            doloribus tempore facere aliquid?</p>
+          <p style="text-align: justify;height: 300px; overflow: hidden;">{{ book.description }}</p>
           <p>Rating: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
               class="fas fa-star"></i><i class="fas fa-star"></i></p>
         </div>
+        {% endif %}
+          {% endfor %}
       </div>
     </div>
   </main>
@@ -335,129 +345,63 @@
 
     <h1 id="tvShows">Comic</h1>
     <div class="box2">
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51chFLcBI5L._SX383_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/61gVNYNntVL._SX350_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://m.media-amazon.com/images/I/511SB91kDbL.jpg" alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51HWxk2eXXL._SX376_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://m.media-amazon.com/images/I/61CFyGc5QoL.jpg" alt=""></a>
-
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51f+NOvLcdL._SX336_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51HXtMne9XL._SX352_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <!-- <a href=""><img src="https://images-eu.ssl-images-amazon.com/images/I/51J3RzxeUoL._SY264_BO1,204,203,200_QL40_FMwebp_.jpg" alt=""></a> -->
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51jCw4RzITL._SX366_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/61ck5XWxB3L._SX324_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51ur-aHOT6L._SX355_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51x7mCG6qXL._SX331_BO1,204,203,200_.jpg"
-          alt=""></a>
+      {% for book in books %}
+      {% if book.genre == 'comic' %}
+      <a href="{{ url_for('book_info', book_id=book.id)}}"><img class="fa-square-full article-img"
+          src="{{ url_for('static', filename='img/books/' + book.image_file) }}"></a>
+      {% endif %}
+      {% endfor %}a
     </div>
 
 
     <h1 id="movies">Mystery & Thriller</h1>
     <div class="box2">
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/518cNAbz7AL._SX311_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51GHAvwe8SS._SX323_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51+kE0KESsL._SX326_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51cINGMmrbL._SX323_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51UA4cTPAhL._SX321_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/41QMKIWimFL._SX311_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/41l3nAX-GZL._SX330_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/516lCvcxe+S._SX324_BO1,204,203,200_.jpg"
-          alt=""></a>
+      {% for book in books %}
+      {% if book.genre in ['mystery', 'thriller'] %}
+      <a href="{{ url_for('book_info', book_id=book.id)}}"><img class="fa-square-full article-img"
+          src="{{ url_for('static', filename='img/books/' + book.image_file) }}"></a>
+      {% endif %}
+      {% endfor %}
     </div>
 
     <h1 id="originals">Fantasy</h1>
     <div class="box2">
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/41595QPnOeL._SX320_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://m.media-amazon.com/images/I/51PZj2tdTGL.jpg" alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/515Y-kC7EQL._SX310_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/61VyjZAv9gL._SX324_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51PLPLu6pvL._SX311_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51uAHDktCRL._SX324_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51ed4Zltn1L._SX324_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51U0qodKtbL._SX327_BO1,204,203,200_.jpg"
-          alt=""></a>
+      {% for book in books %}
+      {% if book.genre == 'fantasy' %}
+      <a href="{{ url_for('book_info', book_id=book.id)}}"><img class="fa-square-full article-img"
+          src="{{ url_for('static', filename='img/books/' + book.image_file) }}"></a>
+      {% endif %}
+      {% endfor %}
     </div>
 
     <h1 id="originals">Horror</h1>
     <div class="box2">
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51CyNf+aXHL._SX330_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51I-IQ5D6cS._SX323_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51bi5cmQYSL._SX313_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51x+I8Pua7L._SX324_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51wME9t9b9L._SX351_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51bwnCTeE2L._SX334_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://m.media-amazon.com/images/I/41NMBD9kYrL.jpg" alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51wEkxY++PL._SX311_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://m.media-amazon.com/images/I/418MfUzOMJL.jpg" alt=""></a>
+      {% for book in books %}
+      {% if book.genre == 'horror' %}
+      <a href="{{ url_for('book_info', book_id=book.id)}}"><img class="fa-square-full article-img"
+          src="{{ url_for('static', filename='img/books/' + book.image_file) }}"></a>
+      {% endif %}
+      {% endfor %}
     </div>
 
     <h1 id="originals">Classics</h1>
     <div class="box2">
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51DgGEZikdL._SX340_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/415+jozXUNL._SX306_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51pT5XQHSKL._SX308_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/41kAxbOhV8L._SX328_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51FZCdcN2HL._SX328_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/518Vh4CXJ6L._SX348_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/514kNkerQ0L._SX324_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://m.media-amazon.com/images/I/41X+kHgrVBL.jpg" alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/410llGwMZGL._SX328_BO1,204,203,200_.jpg"
-          alt=""></a>
+      {% for book in books %}
+      {% if book.genre == 'classics' %}
+      <a href="{{ url_for('book_info', book_id=book.id)}}"><img class="fa-square-full article-img"
+          src="{{ url_for('static', filename='img/books/' + book.image_file) }}"></a>
+      {% endif %}
+      {% endfor %}
     </div>
 
     <h1 id="originals">Autobiographies</h1>
     <div class="box2">
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/41Vyss0-f1L._SX308_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/41n1edvVlLL._SX317_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51wbVQTpTgL._SX339_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/41IhZl8wizL._SX322_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://m.media-amazon.com/images/I/41NQNVe3lqS.jpg" alt=""></a>
-      <a href=""><img src="https://m.media-amazon.com/images/I/41ndvNbV2dL.jpg" alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/51oHUvYzbsL._SX327_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/515l872aCbL._SX323_BO1,204,203,200_.jpg"
-          alt=""></a>
-      <a href=""><img src="https://images-na.ssl-images-amazon.com/images/I/41k8MUF7ViL._SX307_BO1,204,203,200_.jpg"
-          alt=""></a>
+      {% for book in books %}
+      {% if book.genre == 'autobiographies' %}
+      <a href="{{ url_for('book_info', book_id=book.id)}}"><img class="fa-square-full article-img"
+          src="{{ url_for('static', filename='img/books/' + book.image_file) }}"></a>
+      {% endif %}
+      {% endfor %}
     </div>
 
 
@@ -480,10 +424,10 @@
       <div class="col-lg-2">
         <h4 class="footer-heading underline-small-footer">Explore</h4>
         <ul>
-          <li><a href="https://quillandquire.com/review/">Blog</a></li>
-          <li>Pricing</li>
-          <li>Sales</li>
-          <li>Customer Service</li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Sales</a></li>
+          <li><a href="#">Customer Service</a></li>
         </ul>
       </div>
       <div class="col-lg-3">
