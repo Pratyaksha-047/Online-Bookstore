@@ -1,8 +1,265 @@
 {% extends "base.html" %}
 
 {% block head %}
+<style>
+    body{
+        background-color: #f0eee8;
+    }
+    .container-fluid{
+        margin-bottom: 80px;
+        padding: 50px;
+    }
+    .underline-small-footer{
+    margin-bottom: 50px;
+    display:inline-block;
+    position:relative;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    }
+    .underline-small-footer::after{
+    content:'';
+    height:3px;
+    width:70%;
+    background: #af7352;
+    position:absolute;
+    right: 30%;
+    bottom:-15px;
+    }
+    img{
+        border: 1px solid black;
+        box-shadow: 5px 5px 5px #9b9a9a;
+    }
+    .content{
+        padding-top: 50px;
+    }
+    .content h2{
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 30px;
+        margin-left: 50px;
+    }
+    .content p{
+        margin: 0 50px;
+        text-align: justify;
+        line-height: 1.5;
+        letter-spacing: 0.6px;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<h1>Guide page</h1>
+<div class="container-fluid">
+    <h1 class="underline-small-footer"
+    style="font-size: 40px; text-align: center; font-weight: 700; color: #70442d; margin-left: 30%;">Online Bookstore Guide</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../static/img/home.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+            <div class="col-lg-6 content">
+                <h2>Home Page</h2>
+                <p>Landing page of the website. By clicking on the three bars given at the top right corner, navigation slides in which has link to other pages. On home page, firstly there is intorduction section, then we have some feature. Following that top 5 most sold books are given. Below that we have available books section containing all the books, connected to individual pages. Lastly we have footer, which contains quick link to guide, footer, contact information and social media.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 content">
+                <h2>Available Books</h2>
+                <p>Section given on the bottom of home page. It displays all the books that we sell and they are sorted genre wise. You can scroll them to see all the books. By clicking of the image of any book that you wish to buy, you will be redirscted to individual page of the book. To buy any book you have to <a href="{{ url_for('login') }}">login</a> your account. If you are a new user then you will have to <a href="{{ url_for('register') }}">register</a> first.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="../static/img/all.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../static/img/about.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+            <div class="col-lg-6 content">
+                <h2>About Page</h2>
+                <p>About page contains information regarding our bookstore. It displays all the feature that are present on our web application. Following feature section, we have sales section, which is currently static, but we plan to display all books on sale in this section in the coming future. After sales section we have offers section. It is not implemented yet but we consider it to be a future scope. Lastly we have our team, followed by footer.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 content">
+                <h2>Sales part</h2>
+                <p>Sales section which is provided on the about page, it contains the information oof the books that are available on sale. It is a carousel of books, so you can move them left or right by clicking on the arrow given on left and right. Three books are visible at a time. This section is currently static, we plan to implement this feature in future.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="../static/img/sale.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../static/img/offers.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+            <div class="col-lg-6 content">
+                <h2>Offers Available</h2>
+                <p>Offers section present on the about page, contains all the offers that are provided to the user, such as 3 free trial for new user and 80% discount on first purchase, unlimited access to the audiobooks id the user subscribes to the bookstore, etc. This feature in not implemented yet howerever, we plan to make it work in the near future.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 content">
+                <h2>Search Available Book</h2>
+                <p>Search book page contains all the books that are available for selling. User can search for the book of his/her choice by filling in the name of the book, or a word from the name of the book(e.g. Sherlock will render all books containing Sherlock as name in its title) or author name. If the book is not present then all the books will get rendered onto the page.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="../static/img/search.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../static/img/contact_page.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+            <div class="col-lg-6 content">
+                <h2>Contact Us Page</h2>
+                <p>On contact page, contact information such as phone number, email id, timing and address are provided. By clicking on the email, user will be redirected to the mail app from where they can send mail to us. By clicking on the address, user is redirected to google map where location of our bookstore is given. User also has the option to send message throught the form given on the page.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 content">
+                <h2>Register Page</h2>
+                <p>If you are a new user then you will have to register to our website in order to buy books which can be done only when you are logged into your account. To register, user will have to fill in his/her personal information such as name, phone number(including your country code), address, email id and password. If your are registered successfully then you will be directed to the login page.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="../static/img/register.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../static/img/login.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+            <div class="col-lg-6 content">
+                <h2>Login Page</h2>
+                <p>In order to login to your account, user has to fill in his/her email id along with password that he/she last set. If you are a new user and try to login, then an error will flash on the screen. If you are new user, you will have to register yourself first. If you have forgotten your password then you can choose forgot password option.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 content">
+                <h2>Forgot Password</h2>
+                <p>If a user is registered but he/she has forgotten his/her password then, the person can choose forgot password option given on the login page. On the forgot password page, user can reset password, in order to do so, user has to enter email id and then a mail will be sent to the user from where then=y can change password.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="../static/img/forgot_pass.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../static/img/account.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+            <div class="col-lg-6 content">
+                <h2>Account Page</h2>
+                <p>If the login is successful, then the option given in the navigation bar are updated. Now user will have access to the account page and he/she can buy books. On account page, User have the option to update his/her details and password. User can access the order history from the same page.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 content">
+                <h2>Change Account Details</h2>
+                <p>In order to change account details, user has to click on edit account button given on the account page, then he/she can edit the details as per his/her requirement. Once the user make changes, then he/she can click on update button to save all the changes. </p>
+            </div>
+            <div class="col-lg-6">
+                <img src="../static/img/change_details.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../static/img/change_pass.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+            <div class="col-lg-6 content">
+                <h2>Change Password</h2>
+                <p>In order to change password, user has to click on the reset passsword button given on the change password button given on the account page. User can the enter new password and by clicking on the 'Update password' button he/she can save the changes.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 content">
+                <h2>Order History</h2>
+                <p>Order history of a user can be accessed by clicking on the 'oder history' div given on the left side of the account page. All the information associated to the payment is visible on the page, such as order id, book id, book name, book price and order date.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="../static/img/order_history.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../static/img/book_page.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+            <div class="col-lg-6 content">
+                <h2>Individual Book</h2>
+                <p>Individual book page can be accessed from the home page or the search page. Whichever book that the user wants to buy, he/she can visit this page. All the information related to the book is given on the page such as book title, author's name, price, description, genre, publishing year and the books available in the stock. For buying the book, user has to click on buy button given on the page.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 content">
+                <h2>Buy Book & Payment Option</h2>
+                <p>In order to buy a book, user has to visit that book's page and then click on buy button, after clicking on the buy button, a payment popup will appear having all the payment option. User has to choose the option through which he/she will make payment. After successful payment, a popup will appear which confirms if the user want the receipt on his/her mail of not. After confirming user will be directed the order history page.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="../static/img/pay.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../static/img/terms.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+            <div class="col-lg-6 content">
+                <h2>Terms & Condition Page</h2>
+                <p>Terms and condition of our website are given on this page, user can access this page from the footer which is present on the home page and about page. Read all the terms and condition carefully and then click on agree button given on the bottom left corner.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 content">
+                <h2>Guide Page</h2>
+                <p>Guide is the page that you are currently on, this page contains information regarding all the pages which are present on this website except the pages which are only accessed by the administrator of the online bookstore. By clicking on any of the image, user will be redirected to the webpage which is given in the image.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="../static/img/guide.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="../static/img/footer.png" style="height: 100%; width: 100%;" alt="">
+            </div>
+            <div class="col-lg-6 content">
+                <h2>Footer</h2>
+                <p>Footer contains quick link to guide, terms and condition page and social media. It also contains contact information such as phone number, timing, email id and location of the bookstore. By clicking on the email, user will be redirected to the mail app from where they can send mail to us. By clicking on the address, user is redirected to google map where location of our bookstore is given. It is present on the home page and about page.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
