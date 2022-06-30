@@ -1,4 +1,4 @@
-# Online-Bookstore
+# Book-o-mania - Online-Bookstore
 ## 📖 Application Overview
 ### Home Page
 ![Website Image](main/static/img/home.png?raw=true "Title")
